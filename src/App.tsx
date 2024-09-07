@@ -159,12 +159,12 @@ function App() {
           </h3>
         </div>
       </section>
-      <section className="w-full h-fit py-12 px-6 bg-slate-500 box-border sticky top-0">
+      <section className="w-full h-[calc(100vh-128px)] py-12 px-6 bg-slate-500 box-border sticky top-[128px]">
         <div className="w-[90%] mx-auto">
-          <h2 className="text-4xl font-semibold text-center mb-8">
+          <h2 className="text-4xl font-semibold text-center mb-12">
             Program Details
           </h2>
-          <div className="flex flex-col md:flex-row gap-7 justify-between">
+          <div className="flex flex-col md:w-[80%] md:mx-auto md:flex-row gap-7 justify-between">
             <div className="scale-110">
               <span className="group flex flex-row justify-start items-center w-full mb-6">
                 <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
@@ -213,11 +213,11 @@ function App() {
           </div>
         </div>
       </section>
-      <section className=" w-full h-fit py-10 px-6 bg-slate-200 sticky">
+      <section className=" w-full h-fit py-10 px-10 bg-slate-200 sticky">
         <h2 className="text-4xl font-bolder mb-8 md:text-center">
           Why This Mentorship is Different
         </h2>
-        <p className="lead text-xl w-full md:w-[80%] mx-auto first-letter:text-lg text-justify mb-8">
+        <p className="lead text-xl w-full md:w-[80%] mx-auto first-letter:text-lg text-justify mb-10 font-semibold">
           This isn’t just any program—it’s a personalized mentorship experience
           crafted specifically for those serious about achieving measurable,
           lasting success. Over the course of 30 days, you’ll gain the blueprint
@@ -282,28 +282,28 @@ function App() {
           </li>
         </ul>
       </section>
-      <section className=" w-full h-fit py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 sticky top-0">
+      <section className=" w-full h-[calc(100vh-128px)]  py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 sticky top-[128px]">
         <h2 className="italic text-xl mb-12 font-bold md:text-center">
           Limited Spots Available -{" "}
           <span className="text-2xl animate-ping font-extrabold text-red-800 duration-75">
             Apply Now!
           </span>
         </h2>
-        <div className="text-center my-12">
-          <div className="mt-4 flex gap justify-around scale-110">
-            <div className="flex flex-col justify-center items-center w-fit text-orange-500">
+        <div className="text-center my-12 box-border md:w-[80%] lg:w-[60%] mx-auto">
+          <div className="mt-4 flex justify-around scale-110">
+            <div className="flex flex-col justify-center items-center w-fit text-orange-500 text-3xl">
               <span className="font-semibold text-lg">Days</span>
               <span>{timeRemaining.days}</span>
             </div>
-            <div className="flex flex-col justify-center items-center w-fit text-slate-700">
+            <div className="flex flex-col justify-center items-center w-fit text-slate-700 text-3xl">
               <span className="font-semibold text-lg">Hours</span>
               <span>{timeRemaining.hours}</span>
             </div>
-            <div className="flex flex-col justify-center items-center w-fit text-orange-500">
+            <div className="flex flex-col justify-center items-center w-fit text-orange-500 text-3xl">
               <span className="font-semibold text-lg">Minutes</span>
               <span>{timeRemaining.minutes}</span>
             </div>
-            <div className="flex flex-col justify-center items-center w-fit text-slate-700">
+            <div className="flex flex-col justify-center items-center w-fit text-slate-700 text-3xl">
               <span className="font-semibold text-lg">Seconds</span>
               <span>{timeRemaining.seconds}</span>
             </div>
@@ -315,7 +315,7 @@ function App() {
           to create the life - and business - you've always envisioned. Take
           action today.
         </p>
-        <div className="w-full flex justify-end relative">
+        <div className="w-full flex justify-end md:justify-center relative">
           <button className="text-center group bg-orange-800 py-5 px-3 hover:scale-95 rounded-lg hover:shadow-2xl text-white">
             Enroll Here
           </button>
@@ -384,7 +384,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section className=" w-full h-full bg-slate-100 py-12 px-6 box-border">
+      <section className=" w-full h-full bg-slate-100 py-12 px-6 box-border sticky">
         <h2 className="text-center mb-10 text-4xl font-semibold">FAQ'S</h2>
         <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12">
           <div className="">
@@ -465,7 +465,7 @@ function App() {
           </div>
         </div>
       </section>
-      <footer className="w-full h-52 bg-black static flex justify-center items-center">
+      <footer className="w-full h-52 bg-black flex justify-center items-center sticky">
         <div>
           <h2 className="text-center text-white font-bold text-2xl">
             Useful Links
