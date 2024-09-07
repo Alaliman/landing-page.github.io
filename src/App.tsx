@@ -62,7 +62,7 @@ function App() {
   useEffect(() => {
     // Function to handle the scroll event
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 1;
+      const isScrolled = window.scrollY > 10;
       setHasScrolled(isScrolled);
     };
 
@@ -83,10 +83,10 @@ function App() {
     <div className="w-full h-full">
       <nav
         className={`fixed z-20 w-full h-32 ${
-          hasScrolled ? `bg-slate-100 shadow-md` : `bg-transparent`
+          hasScrolled ? `bg-slate-50 shadow-md` : `bg-transparent`
         }  flex justify-between items-center px-10 box-border`}
       >
-        <div className="w-[20%]">
+        <div className="w-[50%] md:w-[20%]">
           <img src={logo} alt="mu logo" />
         </div>
 
@@ -129,7 +129,7 @@ function App() {
           </button>
         </div>
       </nav>
-      <section className="w-full h-screen bg-slate-400">
+      <section className="w-full h-screen bg-slate-400 sticky top-0">
         <div className="w-full h-full flex justify-center items-center">
           <div className="w-50%">
             <h1>
@@ -144,10 +144,10 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="w-full h-full bg-slate-200 py-6 box-border">
+      <section className="w-full h-[calc(100vh-128px)] bg-gradient-to-b bg-slate-200 sticky py-6 box-border flex justify-center items-center">
         <div className="w-[80%] mx-auto">
           <h2 className="text-4xl text-center my-10">About the Course</h2>
-          <p className=" text-wrap text-xl text-center mb-20 w-[80%] mx-auto">
+          <p className=" text-wrap text-xl text-center mb-20 w-[90%] md:w-[80%] mx-auto">
             Unlock your full potential and 10X your results with our exclusive
             30-day mentorship program. Designed for ambitious individuals ready
             to elevate their lives, careers, and impact, this program offers a
@@ -159,12 +159,12 @@ function App() {
           </h3>
         </div>
       </section>
-      <section className="w-full h-fit py-10 px-6 bg-slate-500 box-border">
+      <section className="w-full h-fit py-12 px-6 bg-slate-500 box-border sticky top-0">
         <div className="w-[90%] mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">
+          <h2 className="text-4xl font-semibold text-center mb-8">
             Program Details
           </h2>
-          <div className="flex flex-col md:flex-row gap-7 justify-around">
+          <div className="flex flex-col md:flex-row gap-7 justify-between">
             <div className="scale-110">
               <span className="group flex flex-row justify-start items-center w-full mb-6">
                 <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
@@ -184,19 +184,19 @@ function App() {
                 Countdown Timer to 21st of September 2024
               </h1>
               <div className="mt-4 flex gap justify-around scale-110">
-                <div className="flex flex-col justify-center items-center w-fit space-x-4 text-orange-500">
+                <div className="flex flex-col justify-center items-center w-fit text-orange-500">
                   <span className="font-semibold text-lg">Days</span>
                   <span>{timeRemaining.days}</span>
                 </div>
-                <div className="flex flex-col justify-center items-center w-fit space-x-4 text-slate-100">
+                <div className="flex flex-col justify-center items-center w-fit text-slate-100">
                   <span className="font-semibold text-lg">Hours</span>
                   <span>{timeRemaining.hours}</span>
                 </div>
-                <div className="flex flex-col justify-center items-center w-fit space-x-4 text-orange-500">
+                <div className="flex flex-col justify-center items-center w-fit text-orange-500">
                   <span className="font-semibold text-lg">Minutes</span>
                   <span>{timeRemaining.minutes}</span>
                 </div>
-                <div className="flex flex-col justify-center items-center w-fit space-x-4 text-slate-100">
+                <div className="flex flex-col justify-center items-center w-fit text-slate-100">
                   <span className="font-semibold text-lg">Seconds</span>
                   <span>{timeRemaining.seconds}</span>
                 </div>
@@ -213,68 +213,68 @@ function App() {
           </div>
         </div>
       </section>
-      <section className=" w-full h-fit py-10 px-6 bg-slate-400">
-        <h2 className="text-3xl font-bolder ">
+      <section className=" w-full h-fit py-10 px-6 bg-slate-200 sticky">
+        <h2 className="text-4xl font-bolder mb-8 md:text-center">
           Why This Mentorship is Different
         </h2>
-        <p>
+        <p className="lead text-xl w-full md:w-[80%] mx-auto first-letter:text-lg text-justify mb-8">
           This isn’t just any program—it’s a personalized mentorship experience
           crafted specifically for those serious about achieving measurable,
           lasting success. Over the course of 30 days, you’ll gain the blueprint
           to:
         </p>
-        <ul>
-          <li>
-            <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+        <ul className="grid w-[95%] md:w-[80%] mx-auto grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 ">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+            <FaArrowRight className=" group-hover:text-slate-800 transition-all" />
             <span>
               Discover Your Purpose: Unlock your "why" and align your actions
               with your core values.
             </span>
           </li>
-          <li>
-            <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Set Powerful Goals: Learn how to set SMART goals and establish
               accountability.
             </span>
           </li>
-          <li>
-            <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Master Focus & Productivity: Overcome distractions and supercharge
               your productivity
             </span>
           </li>
-          <li>
-            <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Shift Your Mindset: Develop a growth mindset to embrace challenges
               as opportunities.
             </span>
           </li>
-          <li>
-            <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Execute with Precision: Receive step-by-step guides and real-time
               workshops.
             </span>
           </li>
-          <li>
-            <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Build Strategic Networks: Learn to build and leverage a strong
               professional network.
             </span>
           </li>
-          <li>
-            <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Increase Sales & Close Gigs: Learn effective Negotiation
               strategies to boost sales and secure more opportunities.
             </span>
           </li>
-          <li>
-            <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Build and Grow Your Online Business or Brand: Discover how to
               create and scale your online presence for long-term success.
@@ -282,72 +282,115 @@ function App() {
           </li>
         </ul>
       </section>
-      <section className=" w-full h-screen bg-slate-200">
-        <h2>Limited Spots Available - Apple Now!</h2>
-        <p>
+      <section className=" w-full h-fit py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 sticky top-0">
+        <h2 className="italic text-xl mb-12 font-bold md:text-center">
+          Limited Spots Available -{" "}
+          <span className="text-2xl animate-ping font-extrabold text-red-800 duration-75">
+            Apply Now!
+          </span>
+        </h2>
+        <div className="text-center my-12">
+          <div className="mt-4 flex gap justify-around scale-110">
+            <div className="flex flex-col justify-center items-center w-fit text-orange-500">
+              <span className="font-semibold text-lg">Days</span>
+              <span>{timeRemaining.days}</span>
+            </div>
+            <div className="flex flex-col justify-center items-center w-fit text-slate-700">
+              <span className="font-semibold text-lg">Hours</span>
+              <span>{timeRemaining.hours}</span>
+            </div>
+            <div className="flex flex-col justify-center items-center w-fit text-orange-500">
+              <span className="font-semibold text-lg">Minutes</span>
+              <span>{timeRemaining.minutes}</span>
+            </div>
+            <div className="flex flex-col justify-center items-center w-fit text-slate-700">
+              <span className="font-semibold text-lg">Seconds</span>
+              <span>{timeRemaining.seconds}</span>
+            </div>
+          </div>
+        </div>
+        <p className="lead text-xl md:w-[80%] mx-auto first-letter:text-lg text-justify mb-6">
           Don't miss this opportunity to be mentored by someone who has been
           where you are and knows the blueprint to success. This is your chance
           to create the life - and business - you've always envisioned. Take
           action today.
         </p>
-        <button>Enroll Here</button>
+        <div className="w-full flex justify-end relative">
+          <button className="text-center group bg-orange-800 py-5 px-3 hover:scale-95 rounded-lg hover:shadow-2xl text-white">
+            Enroll Here
+          </button>
+        </div>
       </section>
-      <section className=" w-full h-screen bg-slate-500">
-        <h2>Are you Ready for the Transformation?</h2>
+      <section className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky">
+        <h2 className="text-4xl italic mb-12 font-bold md:text-center">
+          Are you Ready for the Transformation?
+        </h2>
         <div className="flex flex-col md:flex-row justify-around w-[90%] mx-auto">
-          <div>
-            <h3>Regular Fee</h3>
-            <span>
-              <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              <span>Regular Registration Deadline: September 20, 2024</span>
-            </span>
-            <span>
-              <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              <span>30-Day Mentorship Program</span>
-            </span>
-            <span>
-              <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              <span>Program Kickoff: September 21, 2024</span>
-            </span>
-            <span>
-              <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              <span>
-                <span>free</span> Blueprint worth $300
+          <div className=" bg-slate-50 max-w-[800px] py-8 px-6 border-4 border-blue-500 shadow-2xl box-border rounded-sm min-h-96 flex flex-col">
+            <h3 className="text-center text-3xl mb-7">Regular Fee</h3>
+            <span className="group flex justify-start items-center mb-6">
+              <FaArrowRight className="text-transparent group-hover:text-black" />
+              <span className="ml-5">
+                Regular Registration Deadline: September 20, 2024
               </span>
             </span>
-            <span>$30</span>
+            <span className="relative group flex justify-start items-center mb-6">
+              <FaArrowRight className="text-transparent group-hover:text-black" />
+              <span className="ml-5">30-Day Mentorship Program</span>
+            </span>
+            <span className="relative group flex justify-start items-center mb-6">
+              <FaArrowRight className="text-transparent group-hover:text-black" />
+              <span className="ml-5">Program Kickoff: September 21, 2024</span>
+            </span>
+            <span className="relative group flex justify-start items-center mb-6">
+              <FaArrowRight className="text-transparent group-hover:text-black" />
+              <span className="ml-5">
+                <span className=" uppercase text-xl text-red-900 border-b-2 border-red-900">
+                  free
+                </span>{" "}
+                Blueprint worth $300
+              </span>
+            </span>
+            <span className="w-full text-center text-4xl my-6">$30</span>
             <button>Register Now</button>
           </div>
-          <div>
-            <h3>Early Bird Special</h3>
-            <span>
-              <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              <span>Early Bird Payment Deadline: September 15, 2024</span>
-            </span>
-            <span>
-              <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              <span>30-Day Mentorship Program</span>
-            </span>
-            <span>
-              <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              <span>Program Kickoff: September 21, 2024</span>
-            </span>
-            <span>
-              <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              <span>
-                <span>free</span> Blueprint worth $300
+          <div className="bg-slate-50 py-12 px-6 box-border border-orange-800 shadow-2xl border-4 rounded-sm min-h-96 flex flex-col">
+            <h3 className="text-center text-3xl mb-7">Early Bird Special</h3>
+            <span className=" group flex justify-start items-center mb-6">
+              <FaArrowRight className="text-transparent group-hover:text-black" />
+              <span className="ml-5">
+                Early Bird Payment Deadline: September 15, 2024
               </span>
             </span>
-            <span>$25</span>
+            <span className=" group flex justify-start items-center mb-6">
+              <FaArrowRight className=" text-transparent group-hover:text-black" />
+              <span className="ml-5">30-Day Mentorship Program</span>
+            </span>
+            <span className=" group flex justify-start items-center mb-6">
+              <FaArrowRight className="text-transparent group-hover:text-black" />
+              <span className="ml-5">Program Kickoff: September 21, 2024</span>
+            </span>
+            <span className=" group flex justify-start items-center mb-6">
+              <FaArrowRight className="text-transparent group-hover:text-black" />
+              <span className="ml-5">
+                <span className=" uppercase text-xl text-red-900 border-b-2 border-red-900">
+                  free
+                </span>{" "}
+                Blueprint worth $300
+              </span>
+            </span>
+            <span className="w-full text-center text-4xl my-6">$25</span>
             <button>Register Now</button>
           </div>
         </div>
       </section>
-      <section className=" w-full h-full bg-slate-300 py-10 px-6 box-border">
-        <h2 className="text-center">FAQ'S</h2>
-        <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <h3>Q: Who is this mentorship for?</h3>
+      <section className=" w-full h-full bg-slate-100 py-12 px-6 box-border">
+        <h2 className="text-center mb-10 text-4xl font-semibold">FAQ'S</h2>
+        <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12">
+          <div className="">
+            <h3 className="text-lg font-semibold">
+              Q: Who is this mentorship for?
+            </h3>
             <p>
               A: This program is for anyone ready to 10X their results, whether
               you’re an entrepreneur, freelancer, or professional. If you’re
@@ -356,8 +399,10 @@ function App() {
               mentorship is for you.
             </p>
           </div>
-          <div>
-            <h3>Q: How much time will I need to commit each week?</h3>
+          <div className="">
+            <h3 className="text-lg font-semibold">
+              Q: How much time will I need to commit each week?
+            </h3>
             <p>
               A: We recommend setting aside 3-5 hours per week for live
               sessions, assignments, and practical applications. However, the
@@ -365,8 +410,10 @@ function App() {
               want to get out of the program.
             </p>
           </div>
-          <div>
-            <h3>Q: What if I’m new to online business or sales?</h3>
+          <div className="">
+            <h3 className="text-lg font-semibold">
+              Q: What if I’m new to online business or sales?
+            </h3>
             <p>
               A: This mentorship is designed to meet you where you are. Whether
               you're starting from scratch or looking to refine existing skills,
@@ -374,16 +421,20 @@ function App() {
               at any level.
             </p>
           </div>
-          <div>
-            <h3>Q: Will there be any live interaction?</h3>
+          <div className="">
+            <h3 className="text-lg font-semibold">
+              Q: Will there be any live interaction?
+            </h3>
             <p>
               A: Yes, there will be live sessions, practical workshops, and Q&A
               opportunities to engage directly with mentors and fellow
               participants.
             </p>
           </div>
-          <div>
-            <h3>Q: What happens after the 30 days?</h3>
+          <div className="">
+            <h3 className="text-lg font-semibold">
+              Q: What happens after the 30 days?
+            </h3>
             <p>
               A: After the mentorship, you’ll have a roadmap to continue your
               growth. You’ll also have the option to join advanced programs and
@@ -391,16 +442,20 @@ function App() {
               networking.
             </p>
           </div>
-          <div>
-            <h3>Q: Is there a refund policy?</h3>
+          <div className="">
+            <h3 className="text-lg font-semibold">
+              Q: Is there a refund policy?
+            </h3>
             <p>
               A: Due to the limited spots and personalized nature of the
               mentorship, all fees are non-refundable. However, if you're unable
               to attend, your spot can be transferred to another individual.
             </p>
           </div>
-          <div>
-            <h3>Q: How do I secure my spot?</h3>
+          <div className="">
+            <h3 className="text-lg font-semibold">
+              Q: How do I secure my spot?
+            </h3>
             <p>
               A: You can secure your spot by visiting
               [abcd.com](http://abcd.com) and completing the registration. Don’t
@@ -410,7 +465,7 @@ function App() {
           </div>
         </div>
       </section>
-      <footer className="w-full h-52 bg-black flex justify-center items-center">
+      <footer className="w-full h-52 bg-black static flex justify-center items-center">
         <div>
           <h2 className="text-center text-white font-bold text-2xl">
             Useful Links
