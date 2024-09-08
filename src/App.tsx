@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "./navLogo.png";
 import { CiMenuFries } from "react-icons/ci";
 import { FaArrowRight } from "react-icons/fa6";
@@ -10,7 +10,7 @@ function App() {
   const [hasClicked, setHasClicked] = useState(false);
 
   // Set the target date for countdown
-  const targetDate = new Date("September 21, 2024 00:00:00").getTime();
+  const targetDate = new Date("September 7, 2024 23:00:00").getTime();
 
   // Initialize state to store the time remaining
   const [timeRemaining, setTimeRemaining] = useState({
@@ -79,10 +79,12 @@ function App() {
     setHasClicked(!hasClicked);
   };
 
+  const scroll = (a: any) => {};
+
   return (
     <div className="w-full h-full">
       <nav
-        className={`fixed z-20 w-full h-32 ${
+        className={`fixed z-20 w-full h-24 md:h-32 ${
           hasScrolled ? `bg-slate-50 shadow-md` : `bg-transparent`
         }  flex justify-between items-center px-10 box-border`}
       >
@@ -91,80 +93,84 @@ function App() {
         </div>
 
         <div
-          className="w-fit md:hidden cursor-pointer px-3"
+          className="w-fit md:hidden cursor-pointer px-3 z-50 hover:animate-bounce"
           onClick={toggleMenu}
         >
-          <CiMenuFries className="text-3xl" />
+          {!hasClicked ? <CiMenuFries className="text-3xl" /> : "X"}
         </div>
 
         <div
           className={`${
             hasClicked
-              ? `absolute bg-slate-700/5 w-fit p-5 right-5 top-[40px]`
+              ? `absolute bg-slate-50/85 border border-slate-400 rounded-sm w-[30%] p-5 right-7 top-5`
               : `hidden`
-          } md:static bg-slate-700/5 md:bg-transparent md:inline-block md:w-[50%]`}
+          } md:static bg-slate-700/5 md:bg-transparent  md:inline-block md:w-[50%]`}
         >
-          <ul className="w-full flex flex-col md:flex-row md:justify-between md:items-center">
-            <li className="text-2xl cursor-pointer md:text-xs hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              Home
+          <ul className="w-full flex flex-col justify-center items-center md:flex-row md:justify-between md:items-center">
+            <li className="text-2xl pt-3 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
+              <a href="#">Home</a>
             </li>
-            <li className="text-2xl cursor-pointer md:text-xs hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              About
+            <li className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
+              <a href="#about">About</a>
             </li>
-            <li className="text-2xl cursor-pointer md:text-xs hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              Benefits
+            <li className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
+              <a href="#benefits">Benefits</a>
             </li>
-            <li className="text-2xl cursor-pointer md:text-xs hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              Pricing
+            <li className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
+              <a href="#pricing">Pricing</a>
             </li>
-            <li className="text-2xl cursor-pointer md:text-xs hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              FAQ's
+            <li className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
+              <a href="#faq">FAQ's</a>
             </li>
           </ul>
         </div>
         <div className="hidden  w-fit md:flex justify-around items-center">
-          <button className="bg-orange-500 group w-[80px] h-10 text-sm rounded-sm hover:bg-orange-300">
+          <button className="bg-orange-500 group w-[80px] h-10 text-sm rounded-sm hover:bg-orange-400 hover:scale-105 transition-all">
             Join now{" "}
             <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
           </button>
         </div>
       </nav>
-      <section className="w-full h-screen bg-slate-400 sticky top-0">
+      <section className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-slate-400 sticky top-0">
         <div className="w-full h-full flex justify-center items-center">
-          <div className="w-50%">
+          <div className="w-full px-12 md:px-0 md:w-50% md:text-center md:ml-0">
             <h1>
-              <span className="text-7xl font-bold text-slate-200">
+              <span className=" text-6xl md:text-7xl font-extrabold text-orange-600">
                 Built to Last
               </span>
             </h1>
-            <p className="text-5xl text-slate-200">
+            <p className="text-4xl md:text-5xl text-slate-200">
               Transforming Your Purpose into <br /> Productivity, Progress, and
               Profit
             </p>
           </div>
         </div>
       </section>
-      <section className="w-full h-[calc(100vh-128px)] bg-gradient-to-b bg-slate-200 sticky py-6 box-border flex justify-center items-center">
+      <section
+        id="about"
+        className="w-full h-fit bg-gradient-to-b bg-slate-200 sticky py-10 box-border flex justify-center items-center"
+      >
         <div className="w-[80%] mx-auto">
           <h2 className="text-4xl text-center my-10">About the Course</h2>
           <p className=" text-wrap text-xl text-center mb-20 w-[90%] md:w-[80%] mx-auto">
             Unlock your full potential and 10X your results with our exclusive
             30-day mentorship program. Designed for ambitious individuals ready
-            to elevate their lives, careers, and impact, this program offers a
-            transformative experience that will redefine your future.
+            font-semibold to elevate their lives, careers, and impact, this
+            program offers a transformative experience that will redefine your
+            future.
           </p>
 
-          <h3 className="text-2xl text-center text-orange-500 mb-10">
+          <h3 className="text-2xl text-center text-orange-500 mb-10 animate-pulse">
             Transform Your Life in 30 Days!{" "}
           </h3>
         </div>
       </section>
-      <section className="w-full h-[calc(100vh-128px)] py-12 px-6 bg-slate-500 box-border sticky top-[128px]">
+      <section className="w-full h-fit py-12 px-6 bg-slate-500 box-border sticky top-24 md:top-32">
         <div className="w-[90%] mx-auto">
           <h2 className="text-4xl font-semibold text-center mb-12">
             Program Details
           </h2>
-          <div className="flex flex-col md:w-[80%] md:mx-auto md:flex-row gap-7 justify-between">
+          <div className="flex flex-col lg:w-[80%] lg:mx-auto lg:flex-row gap-7 justify-between md:items-center">
             <div className="scale-110">
               <span className="group flex flex-row justify-start items-center w-full mb-6">
                 <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
@@ -179,11 +185,11 @@ function App() {
                 <h3>Regular Registration Deadline: September 20, 2024</h3>
               </span>
             </div>
-            <div className="text-center">
-              <h1 className="text-xl font-bold">
+            <div className="text-center md:w-[40%]">
+              {/* <h1 className="text-xl font-bold text-transparent">
                 Countdown Timer to 21st of September 2024
-              </h1>
-              <div className="mt-4 flex gap justify-around scale-110">
+              </h1> */}
+              <div className="mt-4 flex gap justify-around scale-110 ">
                 <div className="flex flex-col justify-center items-center w-fit text-orange-500">
                   <span className="font-semibold text-lg">Days</span>
                   <span>{timeRemaining.days}</span>
@@ -204,16 +210,16 @@ function App() {
             </div>
           </div>
           <div className="mt-10 text-center">
-            <span className="text-red-800 text-5xl font-bold">
+            <span className="text-red-800 text-5xl font-bold animate-ping duration-100">
               Limited Spots Available!
             </span>
-            <a href="#" className="block hover:underline">
-              Register Now
-            </a>
           </div>
         </div>
       </section>
-      <section className=" w-full h-fit py-10 px-10 bg-slate-200 sticky">
+      <section
+        id="benefits"
+        className=" w-full h-fit py-10 px-10 bg-slate-200 sticky"
+      >
         <h2 className="text-4xl font-bolder mb-8 md:text-center">
           Why This Mentorship is Different
         </h2>
@@ -224,56 +230,56 @@ function App() {
           to:
         </p>
         <ul className="grid w-[95%] md:w-[80%] mx-auto grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 ">
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
             <FaArrowRight className=" group-hover:text-slate-800 transition-all" />
             <span>
               Discover Your Purpose: Unlock your "why" and align your actions
               with your core values.
             </span>
           </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
             <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Set Powerful Goals: Learn how to set SMART goals and establish
               accountability.
             </span>
           </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
             <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Master Focus & Productivity: Overcome distractions and supercharge
               your productivity
             </span>
           </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
             <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Shift Your Mindset: Develop a growth mindset to embrace challenges
               as opportunities.
             </span>
           </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
             <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Execute with Precision: Receive step-by-step guides and real-time
               workshops.
             </span>
           </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
             <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Build Strategic Networks: Learn to build and leverage a strong
               professional network.
             </span>
           </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
             <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Increase Sales & Close Gigs: Learn effective Negotiation
               strategies to boost sales and secure more opportunities.
             </span>
           </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800">
+          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
             <FaArrowRight className="group-hover:text-slate-800 transition-all" />
             <span>
               Build and Grow Your Online Business or Brand: Discover how to
@@ -282,7 +288,7 @@ function App() {
           </li>
         </ul>
       </section>
-      <section className=" w-full h-[calc(100vh-128px)]  py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 sticky top-[128px]">
+      <section className=" w-full h-fit  py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 sticky top-24 md:top-32">
         <h2 className="italic text-xl mb-12 font-bold md:text-center">
           Limited Spots Available -{" "}
           <span className="text-2xl animate-ping font-extrabold text-red-800 duration-75">
@@ -321,7 +327,10 @@ function App() {
           </button>
         </div>
       </section>
-      <section className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky">
+      <section
+        id="pricing"
+        className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky"
+      >
         <h2 className="text-4xl italic mb-12 font-bold md:text-center">
           Are you Ready for the Transformation?
         </h2>
@@ -384,7 +393,10 @@ function App() {
           </div>
         </div>
       </section>
-      <section className=" w-full h-full bg-slate-100 py-12 px-6 box-border sticky">
+      <section
+        id="faq"
+        className=" w-full h-full bg-slate-100 py-12 px-6 box-border sticky"
+      >
         <h2 className="text-center mb-10 text-4xl font-semibold">FAQ'S</h2>
         <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12">
           <div className="">
