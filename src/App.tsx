@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "./navLogo.png";
 import { CiMenuFries } from "react-icons/ci";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowRight, FaWhatsapp } from "react-icons/fa6";
+import { RiInstagramFill, RiTwitterXLine } from "react-icons/ri";
+import { FaTelegramPlane } from "react-icons/fa";
 import "./App.css";
 
 function App() {
@@ -499,10 +501,12 @@ function App() {
               Q: How do I secure my spot?
             </h3>
             <p>
-              A: You can secure your spot by visiting
-              [abcd.com](http://abcd.com) and completing the registration. Don’t
-              forget to take advantage of the Early Bird special by registering
-              before September 15, 2024!
+              A: You can secure your spot by visiting{" "}
+              <span onClick={() => scroll(pricing)} className=" underline ">
+                HERE
+              </span>{" "}
+              and completing the registration. Don’t forget to take advantage of
+              the Early Bird special by registering before September 15, 2024!
             </p>
           </div>
         </div>
@@ -510,9 +514,14 @@ function App() {
       <footer className="w-full h-52 bg-black flex justify-center items-center sticky">
         <div>
           <h2 className="text-center text-white font-bold text-2xl">
-            Useful Links
+            connect with me
           </h2>
-          <div></div>
+          <div className="flex justify-between items-center">
+            <RiInstagramFill className="w-[20%] text-pink" />
+            <RiTwitterXLine className="w-[20%] text-white" />
+            <FaTelegramPlane className="w-[20%] text-blue-900" />
+            <FaWhatsapp className="w-[20%] text-green-600" />
+          </div>
         </div>
       </footer>
     </div>
