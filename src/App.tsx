@@ -9,8 +9,13 @@ function App() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [hasClicked, setHasClicked] = useState(false);
 
+  const home = useRef<HTMLElement | null>(null);
+  const about = useRef<HTMLElement | null>(null);
+  const benefits = useRef<HTMLElement | null>(null);
+  const pricing = useRef<HTMLElement | null>(null);
+  const faq = useRef<HTMLElement | null>(null);
   // Set the target date for countdown
-  const targetDate = new Date("September 7, 2024 23:00:00").getTime();
+  const targetDate = new Date("September 21, 2024 00:00:00").getTime();
 
   // Initialize state to store the time remaining
   const [timeRemaining, setTimeRemaining] = useState({
@@ -79,7 +84,9 @@ function App() {
     setHasClicked(!hasClicked);
   };
 
-  const scroll = (a: any) => {};
+  const scroll = (a: React.MutableRefObject<HTMLElement | null>) => {
+    a.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className="w-full h-full">
@@ -89,7 +96,12 @@ function App() {
         }  flex justify-between items-center px-10 box-border`}
       >
         <div className="w-[50%] md:w-[20%]">
-          <img src={logo} alt="mu logo" />
+          <img
+            src={logo}
+            alt="mu logo"
+            onClick={() => scroll(home)}
+            className="cursor-pointer"
+          />
         </div>
 
         <div
@@ -107,20 +119,35 @@ function App() {
           } md:static bg-slate-700/5 md:bg-transparent  md:inline-block md:w-[50%]`}
         >
           <ul className="w-full flex flex-col justify-center items-center md:flex-row md:justify-between md:items-center">
-            <li className="text-2xl pt-3 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              <a href="#">Home</a>
+            <li
+              onClick={() => scroll(home)}
+              className="text-2xl pt-3 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+            >
+              Home
             </li>
-            <li className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              <a href="#about">About</a>
+            <li
+              onClick={() => scroll(about)}
+              className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+            >
+              About
             </li>
-            <li className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              <a href="#benefits">Benefits</a>
+            <li
+              onClick={() => scroll(benefits)}
+              className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+            >
+              Benefits
             </li>
-            <li className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              <a href="#pricing">Pricing</a>
+            <li
+              onClick={() => scroll(pricing)}
+              className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+            >
+              Pricing
             </li>
-            <li className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500">
-              <a href="#faq">FAQ's</a>
+            <li
+              onClick={() => scroll(faq)}
+              className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+            >
+              FAQ's
             </li>
           </ul>
         </div>
@@ -131,7 +158,10 @@ function App() {
           </button>
         </div>
       </nav>
-      <section className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-slate-400 sticky top-0">
+      <section
+        ref={home}
+        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-slate-400 "
+      >
         <div className="w-full h-full flex justify-center items-center">
           <div className="w-full px-12 md:px-0 md:w-50% md:text-center md:ml-0">
             <h1>
@@ -147,11 +177,11 @@ function App() {
         </div>
       </section>
       <section
-        id="about"
+        ref={about}
         className="w-full h-fit bg-gradient-to-b bg-slate-200 sticky py-10 box-border flex justify-center items-center"
       >
         <div className="w-[80%] mx-auto">
-          <h2 className="text-4xl text-center my-10">About the Course</h2>
+          <h2 className="text-4xl text-center my-12">About the Course</h2>
           <p className=" text-wrap text-xl text-center mb-20 w-[90%] md:w-[80%] mx-auto">
             Unlock your full potential and 10X your results with our exclusive
             30-day mentorship program. Designed for ambitious individuals ready
@@ -217,10 +247,10 @@ function App() {
         </div>
       </section>
       <section
-        id="benefits"
+        ref={benefits}
         className=" w-full h-fit py-10 px-10 bg-slate-200 sticky"
       >
-        <h2 className="text-4xl font-bolder mb-8 md:text-center">
+        <h2 className="text-4xl font-bolder mt-10 mb-8 md:text-center">
           Why This Mentorship is Different
         </h2>
         <p className="lead text-xl w-full md:w-[80%] mx-auto first-letter:text-lg text-justify mb-10 font-semibold">
@@ -328,7 +358,7 @@ function App() {
         </div>
       </section>
       <section
-        id="pricing"
+        ref={pricing}
         className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky"
       >
         <h2 className="text-4xl italic mb-12 font-bold md:text-center">
@@ -394,7 +424,7 @@ function App() {
         </div>
       </section>
       <section
-        id="faq"
+        ref={faq}
         className=" w-full h-full bg-slate-100 py-12 px-6 box-border sticky"
       >
         <h2 className="text-center mb-10 text-4xl font-semibold">FAQ'S</h2>
