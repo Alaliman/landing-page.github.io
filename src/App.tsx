@@ -512,15 +512,36 @@ function App() {
         </div>
       </section>
       <footer className="w-full h-52 bg-black flex justify-center items-center sticky">
-        <div>
+        <div className="w-[80%] md:w-[40%] flex flex-col justify-center gap-8">
           <h2 className="text-center text-white font-bold text-2xl">
             connect with me
           </h2>
-          <div className="flex justify-between items-center">
-            <RiInstagramFill className="w-[20%] text-pink" />
-            <RiTwitterXLine className="w-[20%] text-white" />
-            <FaTelegramPlane className="w-[20%] text-blue-900" />
-            <FaWhatsapp className="w-[20%] text-green-600" />
+          <div className="flex w-full justify-around items-center">
+            <a
+              href="https://www.instagram.com/energysalvation?igsh=YmxkYmt4a3ZrZXdn"
+              className="w-fit p-2 text-pink-700"
+            >
+              <RiInstagramFill className=" text-3xl mx-auto" />
+            </a>
+            <a
+              href="https://x.com/EnergySalvation"
+              className="w-fit p-2 text-white"
+            >
+              <RiTwitterXLine className="text-3xl mx-auto" />
+            </a>
+            <a
+              href="https://t.me/SalvationEnergySignals"
+              className="w-fit p-2 text-blue-900"
+            >
+              <FaTelegramPlane className="text-3xl mx-auto" />
+            </a>
+            <a
+              href="https://whatsapp.com/channel/0029Va5oLmN2ZjCn9kCslO1f"
+              className="w-fit p-2 text-green-600"
+            >
+              {" "}
+              <FaWhatsapp className="text-3xl mx-auto" />
+            </a>
           </div>
         </div>
       </footer>
