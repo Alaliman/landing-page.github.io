@@ -176,7 +176,7 @@ function App() {
       </nav>
       <section
         ref={home}
-        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-[hsl(0,0%,8%)] "
+        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-gradient-to-b to-[hsl(0,0%,8%)] "
       >
         <div className="w-full h-full flex justify-center items-center">
           <div className="w-full px-12 md:px-0 md:w-50% md:text-center md:ml-0">
@@ -201,9 +201,8 @@ function App() {
           <p className=" text-wrap text-xl text-center mb-20 w-[90%] md:w-[80%] mx-auto">
             Unlock your full potential and 10X your results with our exclusive
             30-day mentorship program. Designed for ambitious individuals ready
-            font-semibold to elevate their lives, careers, and impact, this
-            program offers a transformative experience that will redefine your
-            future.
+            to elevate their lives, careers, and impact, this program offers a
+            transformative experience that will redefine your future.
           </p>
 
           <h3 className="text-2xl text-center text-orange-500 mb-10 animate-pulse">
@@ -321,11 +320,12 @@ function App() {
         className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky"
       >
         <h2 className="text-4xl italic mb-12 font-bold md:text-center">
-          Ready for the Transformation?
+          Ready for <span className="font-bold text-red-800">YOUR</span>{" "}
+          Transformation?
         </h2>
         <div className="flex flex-col md:flex-row justify-around w-[90%] mx-auto">
           <div className=" bg-slate-50 max-w-[800px] py-8 px-6 border-4 border-blue-500 shadow-2xl box-border rounded-sm min-h-96 flex flex-col">
-            <h3 className="text-center text-3xl mb-7">Regular Fee</h3>
+            <h3 className="text-center font-bold text-3xl mb-7">Regular Fee</h3>
             <span className="group flex justify-start items-center mb-6">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5">
@@ -353,7 +353,9 @@ function App() {
             <button>Register Now</button>
           </div>
           <div className="bg-slate-50 py-12 px-6 box-border border-orange-800 shadow-2xl border-4 rounded-sm min-h-96 flex flex-col">
-            <h3 className="text-center text-3xl mb-7">Early Bird Special</h3>
+            <h3 className="text-center font-bold text-3xl mb-7">
+              Early Bird Special
+            </h3>
             <span className=" group flex justify-start items-center mb-6">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5">

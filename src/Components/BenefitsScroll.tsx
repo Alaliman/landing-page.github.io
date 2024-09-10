@@ -21,9 +21,8 @@ const HorizontalScrollList = () => {
   const handleScroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
       const { scrollLeft, clientWidth, scrollWidth } =
-        scrollContainerRef.current;
-      const isMobile = window.innerWidth < 768; // Check if the screen size is mobile (less than 768px)
-      const scrollAmount = isMobile ? clientWidth / 2 : clientWidth; // Adjust scroll amount for mobile
+        scrollContainerRef.current; // Check if the screen size is mobile (less than 768px)
+      const scrollAmount = clientWidth; // Adjust scroll amount for mobile
 
       if (direction === "left") {
         // If scrolling left and at the start, scroll to the end
@@ -66,7 +65,7 @@ const HorizontalScrollList = () => {
           return (
             <motion.div
               key={index}
-              className="flex-shrink-0 w-[100%] md:w-[calc(50%-1rem)] p-4 bg-white border rounded-lg shadow-md"
+              className="flex-shrink-0 w-[calc(100%-1rem)] md:w-[calc(50%-1rem)] p-4 bg-white border rounded-lg shadow-md"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
