@@ -11,3 +11,16 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.hero {
+  background-image: url("/src/imgs/hero.jpg");
+  background-position: bottom center;
+  background-size: 200%;
+}
+
+@media only screen and (min-width: 1025px) {
+  .hero {
+    background-position: bottom center;
+    background-size: 100%;
+  }
+}

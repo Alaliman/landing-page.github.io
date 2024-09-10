@@ -115,7 +115,7 @@ function App() {
   return (
     <div className="w-full h-full">
       <nav
-        className={`fixed z-20 w-full h-24 md:h-32 ${
+        className={`fixed z-40 w-full h-24 md:h-32 ${
           hasScrolled ? `bg-slate-50 shadow-md` : `bg-transparent`
         }  flex justify-between items-center px-10 box-border`}
       >
@@ -140,9 +140,9 @@ function App() {
         <div
           className={`${
             hasClicked
-              ? `absolute bg-slate-50 border  rounded-sm w-[30%] px-10 py-5 p-5 right-7 top-5`
-              : `hidden`
-          } md:static bg-slate-700/5 md:bg-transparent  md:inline-block md:w-[50%]`}
+              ? `absolute border rounded-sm w-fit px-20 py-5 right-7 top-5  transition-all`
+              : `hidden  transition-all`
+          } md:static bg-slate-50 z-40 md:bg-transparent md:border-none md:inline-block md:w-[50%]`}
         >
           <ul className="w-full flex flex-col justify-center items-center md:flex-row md:justify-between md:items-center">
             <li
@@ -199,25 +199,36 @@ function App() {
       </nav>
       <section
         ref={home}
-        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-[hsl(0,0%,8%)] "
+        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px]  hero"
       >
-        <div className="w-full h-full flex justify-center items-center">
-          <div className="w-full px-12 md:px-0 md:w-50% md:text-center md:ml-0">
-            <h1>
+        <div className="w-full inset-0 absolute h-[2000px] z-10 bg-[hsl(0,0%,8%)]/85"></div>
+        <div className="w-full h-full flex justify-center items-center z-30">
+          <div className="w-full md:w-fit px-12 md:py-24 md:px-10 md:w-50% md:text-center z-30 md:ml-0 md:border md:shadow-sm md:shadow-[hsl(0,0%,99%)] md:border-[hsl(0,0%,99%)]">
+            <h1 className="md:pb-2">
               <span className=" text-6xl md:text-7xl font-extrabold text-orange-600">
                 Built to Last
               </span>
             </h1>
-            <p className="text-4xl md:text-5xl text-[hsl(0,0%,99%)]">
+            <p className="text-4xl md:pb-5 md:text-5xl text-[hsl(0,0%,99%)]">
               Transforming Your Purpose into <br />
               Productivity, Progress, and Profit
             </p>
+
+            <div className=" md:hidden w-[30%] pt-10">
+              <button
+                onClick={() => window.open("https://selar.co/1ar183", "_blank")}
+                className="bg-orange-500 group w-full h-10 text-sm rounded-sm hover:bg-orange-400 hover:scale-105 transition-all"
+              >
+                Join now{" "}
+                <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
       <section
         ref={about}
-        className="w-full h-fit bg-gradient-to-b bg-slate-200 sticky py-10 box-border flex justify-center items-center"
+        className="w-full h-fit bg-gradient-to-b bg-slate-200 sticky py-10 box-border flex justify-center items-center z-30"
       >
         <div className="w-[80%] mx-auto">
           <h2 className="text-4xl text-center my-12">About this Mentorship</h2>
@@ -233,7 +244,7 @@ function App() {
           </h3>
         </div>
       </section>
-      <section className="w-full h-fit py-12 px-6 bg-slate-500 box-border sticky top-24 md:top-32">
+      <section className="w-full h-fit py-12 px-6 bg-slate-500 box-border sticky top-24 md:top-32 z-20">
         <div className="w-[90%] mx-auto">
           <h2 className="text-4xl font-semibold text-center mb-12">
             Program Details
@@ -286,7 +297,7 @@ function App() {
       </section>
       <section
         ref={benefits}
-        className=" w-full h-fit py-10 px-10 bg-slate-200 sticky"
+        className=" w-full h-fit py-10 px-10 bg-slate-200 sticky z-30"
       >
         <h2 className="text-4xl font-bolder mt-10 mb-8 md:text-center">
           Why This Mentorship is Different
@@ -299,7 +310,7 @@ function App() {
         </p>
         <HorizontalScrollList />
       </section>
-      <section className=" w-full h-fit  py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 sticky top-24 md:top-32">
+      <section className=" w-full h-fit  py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 sticky top-24 md:top-32 z-20">
         <h2 className="italic text-xl mb-12 font-bold md:text-center">
           Limited Spots Available -{" "}
           <span className="text-2xl animate-ping font-extrabold text-red-800 duration-75">
@@ -343,7 +354,7 @@ function App() {
       </section>
       <section
         ref={pricing}
-        className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky"
+        className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky z-30"
       >
         <h2 className="text-4xl italic mb-12 font-bold md:text-center">
           Ready for <span className="font-bold text-red-800">Your</span>{" "}
@@ -454,18 +465,15 @@ function App() {
       </section>
       <section
         ref={faq}
-        className=" w-full h-full bg-slate-100 py-12 px-6 box-border sticky"
+        className=" w-full h-full bg-slate-100 py-12 px-6 box-border sticky z-30"
       >
         <h2 className="text-center mb-10 text-4xl font-semibold">FAQ'S</h2>
         <div className="w-[70%] mx-auto">
           <Accordion />
         </div>
       </section>
-      <footer className="w-full h-52 bg-black flex justify-center items-center sticky">
+      <footer className="w-full h-52 bg-black flex justify-center items-center sticky z-30">
         <div className="w-[80%] md:w-[40%] flex flex-col justify-center gap-8">
-          <h2 className="text-center text-white font-bold text-2xl">
-            connect with me
-          </h2>
           <div className="flex w-full justify-around items-center">
             <a
               href="https://www.instagram.com/energysalvation?igsh=YmxkYmt4a3ZrZXdn"
