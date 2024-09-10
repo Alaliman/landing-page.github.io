@@ -69,7 +69,7 @@ function App() {
   useEffect(() => {
     // Function to handle the scroll event
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
+      const isScrolled = window.scrollY > 0;
       setHasScrolled(isScrolled);
     };
 
@@ -123,31 +123,41 @@ function App() {
           <ul className="w-full flex flex-col justify-center items-center md:flex-row md:justify-between md:items-center">
             <li
               onClick={() => scroll(home)}
-              className="text-2xl pt-3 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+              className={`text-2xl ${
+                !hasScrolled && "text-[hsl(0,0%,29%)]"
+              } pt-3 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               Home
             </li>
             <li
               onClick={() => scroll(about)}
-              className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+              className={`text-2xl ${
+                !hasScrolled && "text-[hsl(0,0%,29%)]"
+              } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               About
             </li>
             <li
               onClick={() => scroll(benefits)}
-              className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+              className={`text-2xl ${
+                !hasScrolled && "text-[hsl(0,0%,29%)]"
+              } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               Benefits
             </li>
             <li
               onClick={() => scroll(pricing)}
-              className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+              className={`text-2xl ${
+                !hasScrolled && "text-[hsl(0,0%,29%)]"
+              } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               Pricing
             </li>
             <li
               onClick={() => scroll(faq)}
-              className="text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500"
+              className={`text-2xl ${
+                !hasScrolled && "text-[hsl(0,0%,29%)]"
+              } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               FAQ's
             </li>
@@ -162,7 +172,7 @@ function App() {
       </nav>
       <section
         ref={home}
-        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-slate-400 "
+        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-[hsl(0,0%,8%)] "
       >
         <div className="w-full h-full flex justify-center items-center">
           <div className="w-full px-12 md:px-0 md:w-50% md:text-center md:ml-0">
@@ -171,7 +181,7 @@ function App() {
                 Built to Last
               </span>
             </h1>
-            <p className="text-4xl md:text-5xl text-slate-200">
+            <p className="text-4xl md:text-5xl text-[hsl(0,0%,99%)]">
               Transforming Your Purpose into <br /> Productivity, Progress, and
               Profit
             </p>
@@ -183,7 +193,7 @@ function App() {
         className="w-full h-fit bg-gradient-to-b bg-slate-200 sticky py-10 box-border flex justify-center items-center"
       >
         <div className="w-[80%] mx-auto">
-          <h2 className="text-4xl text-center my-12">About the Course</h2>
+          <h2 className="text-4xl text-center my-12">About this Mentorship</h2>
           <p className=" text-wrap text-xl text-center mb-20 w-[90%] md:w-[80%] mx-auto">
             Unlock your full potential and 10X your results with our exclusive
             30-day mentorship program. Designed for ambitious individuals ready
@@ -364,7 +374,7 @@ function App() {
         className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky"
       >
         <h2 className="text-4xl italic mb-12 font-bold md:text-center">
-          Are you Ready for the Transformation?
+          Ready for the Transformation?
         </h2>
         <div className="flex flex-col md:flex-row justify-around w-[90%] mx-auto">
           <div className=" bg-slate-50 max-w-[800px] py-8 px-6 border-4 border-blue-500 shadow-2xl box-border rounded-sm min-h-96 flex flex-col">
