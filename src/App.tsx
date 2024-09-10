@@ -5,8 +5,10 @@ import { FaArrowRight, FaWhatsapp } from "react-icons/fa6";
 import { RiInstagramFill, RiTwitterXLine } from "react-icons/ri";
 import { FaTelegramPlane } from "react-icons/fa";
 import "./App.css";
+import { motion } from "framer-motion";
 import Accordion from "./Components/Accordion";
 import HorizontalScrollList from "./Components/BenefitsScroll";
+import TypewriterFixedWidth from "./Components/TypeWriter";
 
 function App() {
   // State to track whether the user has scrolled
@@ -20,6 +22,25 @@ function App() {
   const faq = useRef<HTMLElement | null>(null);
   // Set the target date for countdown
   const targetDate = new Date("September 21, 2024 00:00:00").getTime();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const targetDateToDisable = new Date("2024-09-15T00:00:00"); //
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    // Check if the current date is after the target date
+    const checkDate = () => {
+      const currentDate = new Date();
+      setIsDisabled(currentDate < targetDateToDisable); // Disable the button if current date is before the target date
+    };
+
+    checkDate(); // Initial check
+
+    // Optional: Set an interval to periodically check the date
+    const interval = setInterval(checkDate, 1000); // Check every second
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [targetDateToDisable]);
 
   // Initialize state to store the time remaining
   const [timeRemaining, setTimeRemaining] = useState({
@@ -120,7 +141,7 @@ function App() {
         <div
           className={`${
             hasClicked
-              ? `absolute bg-slate-50/85 border border-slate-400 rounded-sm w-[30%] p-5 right-7 top-5`
+              ? `absolute bg-slate-50 border  rounded-sm w-[30%] px-10 py-5 p-5 right-7 top-5`
               : `hidden`
           } md:static bg-slate-700/5 md:bg-transparent  md:inline-block md:w-[50%]`}
         >
@@ -168,7 +189,10 @@ function App() {
           </ul>
         </div>
         <div className="hidden  w-fit md:flex justify-around items-center">
-          <button className="bg-orange-500 group w-[80px] h-10 text-sm rounded-sm hover:bg-orange-400 hover:scale-105 transition-all">
+          <button
+            onClick={() => window.open("https://selar.co/1ar183", "_blank")}
+            className="bg-orange-500 group w-[80px] h-10 text-sm rounded-sm hover:bg-orange-400 hover:scale-105 transition-all"
+          >
             Join now{" "}
             <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
           </button>
@@ -186,8 +210,8 @@ function App() {
               </span>
             </h1>
             <p className="text-4xl md:text-5xl text-[hsl(0,0%,99%)]">
-              Transforming Your Purpose into <br /> Productivity, Progress, and
-              Profit
+              Transforming Your Purpose into <br />
+              Productivity, Progress, and Profit
             </p>
           </div>
         </div>
@@ -310,7 +334,10 @@ function App() {
           action today.
         </p>
         <div className="w-full flex justify-end md:justify-center relative">
-          <button className="text-center group bg-orange-800 py-5 px-3 hover:scale-95 rounded-lg hover:shadow-2xl text-white">
+          <button
+            onClick={() => window.open("https://selar.co/1ar183", "_blank")}
+            className="text-center group bg-orange-800 py-5 px-3 hover:scale-95 rounded-lg hover:shadow-2xl text-white"
+          >
             Enroll Here
           </button>
         </div>
@@ -320,11 +347,19 @@ function App() {
         className=" w-full h-fit py-12 px-7 box-border bg-slate-100 sticky"
       >
         <h2 className="text-4xl italic mb-12 font-bold md:text-center">
-          Ready for <span className="font-bold text-red-800">YOUR</span>{" "}
+          Ready for <span className="font-bold text-red-800">Your</span>{" "}
           Transformation?
         </h2>
         <div className="flex flex-col md:flex-row justify-around w-[90%] mx-auto">
-          <div className=" bg-slate-50 max-w-[800px] py-8 px-6 border-4 border-blue-500 shadow-2xl box-border rounded-sm min-h-96 flex flex-col">
+          <motion.div
+            whileHover={{
+              scale: 1.05,
+            }}
+            whileTap={{
+              scale: 1,
+            }}
+            className=" bg-slate-50 max-w-[800px] py-12 px-6 border-4 border-blue-500 shadow-2xl box-border rounded-sm min-h-96 flex flex-col"
+          >
             <h3 className="text-center font-bold text-3xl mb-7">Regular Fee</h3>
             <span className="group flex justify-start items-center mb-6">
               <FaArrowRight className="text-transparent group-hover:text-black" />
@@ -350,9 +385,27 @@ function App() {
               </span>
             </span>
             <span className="w-full text-center text-4xl my-6">$30</span>
-            <button>Register Now</button>
-          </div>
-          <div className="bg-slate-50 py-12 px-6 box-border border-orange-800 shadow-2xl border-4 rounded-sm min-h-96 flex flex-col">
+            <span className="w-full flex justify-center">
+              <button
+                onClick={() => window.open("https://selar.co/1ar183", "_blank")}
+                disabled={isDisabled}
+                className={`${
+                  isDisabled ? "bg-transparent" : "bg-orange-500"
+                }  w-fit py-3 px-4 mx-auto rounded-sm`}
+              >
+                {isDisabled ? "you are still early" : "Register Now"}
+              </button>
+            </span>
+          </motion.div>
+          <motion.div
+            whileHover={{
+              scale: 1.05,
+            }}
+            whileTap={{
+              scale: 1,
+            }}
+            className="bg-slate-50 py-12 px-6 box-border border-orange-800 shadow-2xl border-4 rounded-sm min-h-96 flex flex-col"
+          >
             <h3 className="text-center font-bold text-3xl mb-7">
               Early Bird Special
             </h3>
@@ -380,8 +433,24 @@ function App() {
               </span>
             </span>
             <span className="w-full text-center text-4xl my-6">$25</span>
-            <button>Register Now</button>
-          </div>
+            <span className="w-full flex justify-center">
+              <motion.button
+                onClick={() => window.open("https://selar.co/1ar183", "_blank")}
+                disabled={!isDisabled}
+                whileHover={{
+                  scale: 1.05,
+                }}
+                whileTap={{
+                  scale: 1,
+                }}
+                className={`${
+                  !isDisabled ? "bg-transparent" : "bg-orange-500"
+                }  w-fit py-3 px-4 mx-auto rounded-sm`}
+              >
+                {!isDisabled ? "Spot Full" : "Register Now"}
+              </motion.button>
+            </span>
+          </motion.div>
         </div>
       </section>
       <section
