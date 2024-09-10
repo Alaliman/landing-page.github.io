@@ -8,7 +8,6 @@ import "./App.css";
 import { motion } from "framer-motion";
 import Accordion from "./Components/Accordion";
 import HorizontalScrollList from "./Components/BenefitsScroll";
-import TypewriterFixedWidth from "./Components/TypeWriter";
 
 function App() {
   // State to track whether the user has scrolled
