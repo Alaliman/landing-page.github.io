@@ -147,41 +147,31 @@ function App() {
           <ul className="w-full flex flex-col justify-center items-center md:flex-row md:justify-between md:items-center">
             <li
               onClick={() => scroll(home)}
-              className={`text-2xl ${
-                !hasScrolled && "text-[hsl(0,0%,29%)]"
-              } pt-3 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
+              className={`text-2xl pt-3 md:pt-0 cursor-pointer md:text-sm text-orange-500 hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-slate-500`}
             >
               Home
             </li>
             <li
               onClick={() => scroll(about)}
-              className={`text-2xl ${
-                !hasScrolled && "md:text-[hsl(0,0%,29%)]"
-              } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
+              className={`text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm text-orange-500 hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-slate-500`}
             >
               About
             </li>
             <li
               onClick={() => scroll(benefits)}
-              className={`text-2xl ${
-                !hasScrolled && "md:text-[hsl(0,0%,29%)]"
-              } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
+              className={`text-2xl  pt-6 md:pt-0 cursor-pointer md:text-sm text-orange-500 hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-slate-500`}
             >
               Benefits
             </li>
             <li
               onClick={() => scroll(pricing)}
-              className={`text-2xl ${
-                !hasScrolled && "md:text-[hsl(0,0%,29%)]"
-              } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
+              className={`text-2xl pt-6 md:pt-0 cursor-pointer md:text-sm text-orange-500 hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-slate-500`}
             >
               Pricing
             </li>
             <li
               onClick={() => scroll(faq)}
-              className={`text-2xl ${
-                !hasScrolled && "md:text-[hsl(0,0%,29%)]"
-              } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
+              className={`text-2xl  pt-6 md:pt-0 cursor-pointer md:text-sm text-orange-500 hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:textslatee-500`}
             >
               FAQ's
             </li>
