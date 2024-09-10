@@ -400,24 +400,32 @@ function App() {
             <a
               href="https://www.instagram.com/energysalvation?igsh=YmxkYmt4a3ZrZXdn"
               className="w-fit p-2 text-pink-700"
+              target="_blank"
+              rel="noreferrer"
             >
               <RiInstagramFill className=" text-3xl mx-auto" />
             </a>
             <a
               href="https://x.com/EnergySalvation"
               className="w-fit p-2 text-white"
+              target="_blank"
+              rel="noreferrer"
             >
               <RiTwitterXLine className="text-3xl mx-auto" />
             </a>
             <a
               href="https://t.me/SalvationEnergySignals"
               className="w-fit p-2 text-blue-900"
+              target="_blank"
+              rel="noreferrer"
             >
               <FaTelegramPlane className="text-3xl mx-auto" />
             </a>
             <a
               href="https://chat.whatsapp.com/IR12QXr6XFFG5ZJ0Yb6cCQ"
               className="w-fit p-2 text-green-600"
+              target="_blank"
+              rel="noreferrer"
             >
               {" "}
               <FaWhatsapp className="text-3xl mx-auto" />
