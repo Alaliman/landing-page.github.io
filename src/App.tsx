@@ -176,7 +176,7 @@ function App() {
       </nav>
       <section
         ref={home}
-        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-gradient-to-b to-[hsl(0,0%,8%)] "
+        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px] bg-[hsl(0,0%,8%)] "
       >
         <div className="w-full h-full flex justify-center items-center">
           <div className="w-full px-12 md:px-0 md:w-50% md:text-center md:ml-0">
