@@ -5,6 +5,8 @@ import { FaArrowRight, FaWhatsapp } from "react-icons/fa6";
 import { RiInstagramFill, RiTwitterXLine } from "react-icons/ri";
 import { FaTelegramPlane } from "react-icons/fa";
 import "./App.css";
+import Accordion from "./Components/Accordion";
+import HorizontalScrollList from "./Components/BenefitsScroll";
 
 function App() {
   // State to track whether the user has scrolled
@@ -107,7 +109,9 @@ function App() {
         </div>
 
         <div
-          className="w-fit md:hidden cursor-pointer px-3 z-50 hover:animate-bounce"
+          className={` ${
+            !hasScrolled && "text-[hsl(0,0%,29%)]"
+          } w-fit md:hidden cursor-pointer px-3 z-50 hover:animate-bounce`}
           onClick={toggleMenu}
         >
           {!hasClicked ? <CiMenuFries className="text-3xl" /> : "X"}
@@ -132,7 +136,7 @@ function App() {
             <li
               onClick={() => scroll(about)}
               className={`text-2xl ${
-                !hasScrolled && "text-[hsl(0,0%,29%)]"
+                !hasScrolled && "md:text-[hsl(0,0%,29%)]"
               } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               About
@@ -140,7 +144,7 @@ function App() {
             <li
               onClick={() => scroll(benefits)}
               className={`text-2xl ${
-                !hasScrolled && "text-[hsl(0,0%,29%)]"
+                !hasScrolled && "md:text-[hsl(0,0%,29%)]"
               } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               Benefits
@@ -148,7 +152,7 @@ function App() {
             <li
               onClick={() => scroll(pricing)}
               className={`text-2xl ${
-                !hasScrolled && "text-[hsl(0,0%,29%)]"
+                !hasScrolled && "md:text-[hsl(0,0%,29%)]"
               } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               Pricing
@@ -156,7 +160,7 @@ function App() {
             <li
               onClick={() => scroll(faq)}
               className={`text-2xl ${
-                !hasScrolled && "text-[hsl(0,0%,29%)]"
+                !hasScrolled && "md:text-[hsl(0,0%,29%)]"
               } pt-6 md:pt-0 cursor-pointer md:text-sm hover:border-b-2 hover:border-b-slate-600 md:hover:border-b-0 md:hover:text-orange-500`}
             >
               FAQ's
@@ -271,64 +275,7 @@ function App() {
           lasting success. Over the course of 30 days, you’ll gain the blueprint
           to:
         </p>
-        <ul className="grid w-[95%] md:w-[80%] mx-auto grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 ">
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
-            <FaArrowRight className=" group-hover:text-slate-800 transition-all" />
-            <span>
-              Discover Your Purpose: Unlock your "why" and align your actions
-              with your core values.
-            </span>
-          </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
-            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
-            <span>
-              Set Powerful Goals: Learn how to set SMART goals and establish
-              accountability.
-            </span>
-          </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
-            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
-            <span>
-              Master Focus & Productivity: Overcome distractions and supercharge
-              your productivity
-            </span>
-          </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
-            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
-            <span>
-              Shift Your Mindset: Develop a growth mindset to embrace challenges
-              as opportunities.
-            </span>
-          </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
-            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
-            <span>
-              Execute with Precision: Receive step-by-step guides and real-time
-              workshops.
-            </span>
-          </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
-            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
-            <span>
-              Build Strategic Networks: Learn to build and leverage a strong
-              professional network.
-            </span>
-          </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
-            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
-            <span>
-              Increase Sales & Close Gigs: Learn effective Negotiation
-              strategies to boost sales and secure more opportunities.
-            </span>
-          </li>
-          <li className="flex flex-row items-baseline text-lg group hover:text-orange-800 font-semibold">
-            <FaArrowRight className="group-hover:text-slate-800 transition-all" />
-            <span>
-              Build and Grow Your Online Business or Brand: Discover how to
-              create and scale your online presence for long-term success.
-            </span>
-          </li>
-        </ul>
+        <HorizontalScrollList />
       </section>
       <section className=" w-full h-fit  py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 sticky top-24 md:top-32">
         <h2 className="italic text-xl mb-12 font-bold md:text-center">
@@ -440,85 +387,8 @@ function App() {
         className=" w-full h-full bg-slate-100 py-12 px-6 box-border sticky"
       >
         <h2 className="text-center mb-10 text-4xl font-semibold">FAQ'S</h2>
-        <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12">
-          <div className="">
-            <h3 className="text-lg font-semibold">
-              Q: Who is this mentorship for?
-            </h3>
-            <p>
-              A: This program is for anyone ready to 10X their results, whether
-              you’re an entrepreneur, freelancer, or professional. If you’re
-              looking to increase sales, close gigs, build an online business or
-              brand, or simply grow in your personal and professional life, this
-              mentorship is for you.
-            </p>
-          </div>
-          <div className="">
-            <h3 className="text-lg font-semibold">
-              Q: How much time will I need to commit each week?
-            </h3>
-            <p>
-              A: We recommend setting aside 3-5 hours per week for live
-              sessions, assignments, and practical applications. However, the
-              time commitment may vary depending on your goals and how much you
-              want to get out of the program.
-            </p>
-          </div>
-          <div className="">
-            <h3 className="text-lg font-semibold">
-              Q: What if I’m new to online business or sales?
-            </h3>
-            <p>
-              A: This mentorship is designed to meet you where you are. Whether
-              you're starting from scratch or looking to refine existing skills,
-              we provide actionable strategies and support to help you succeed
-              at any level.
-            </p>
-          </div>
-          <div className="">
-            <h3 className="text-lg font-semibold">
-              Q: Will there be any live interaction?
-            </h3>
-            <p>
-              A: Yes, there will be live sessions, practical workshops, and Q&A
-              opportunities to engage directly with mentors and fellow
-              participants.
-            </p>
-          </div>
-          <div className="">
-            <h3 className="text-lg font-semibold">
-              Q: What happens after the 30 days?
-            </h3>
-            <p>
-              A: After the mentorship, you’ll have a roadmap to continue your
-              growth. You’ll also have the option to join advanced programs and
-              stay connected with the community for continued support and
-              networking.
-            </p>
-          </div>
-          <div className="">
-            <h3 className="text-lg font-semibold">
-              Q: Is there a refund policy?
-            </h3>
-            <p>
-              A: Due to the limited spots and personalized nature of the
-              mentorship, all fees are non-refundable. However, if you're unable
-              to attend, your spot can be transferred to another individual.
-            </p>
-          </div>
-          <div className="">
-            <h3 className="text-lg font-semibold">
-              Q: How do I secure my spot?
-            </h3>
-            <p>
-              A: You can secure your spot by visiting{" "}
-              <span onClick={() => scroll(pricing)} className=" underline ">
-                HERE
-              </span>{" "}
-              and completing the registration. Don’t forget to take advantage of
-              the Early Bird special by registering before September 15, 2024!
-            </p>
-          </div>
+        <div className="w-[70%] mx-auto">
+          <Accordion />
         </div>
       </section>
       <footer className="w-full h-52 bg-black flex justify-center items-center sticky">
@@ -546,7 +416,7 @@ function App() {
               <FaTelegramPlane className="text-3xl mx-auto" />
             </a>
             <a
-              href="https://whatsapp.com/channel/0029Va5oLmN2ZjCn9kCslO1f"
+              href="https://chat.whatsapp.com/IR12QXr6XFFG5ZJ0Yb6cCQ"
               className="w-fit p-2 text-green-600"
             >
               {" "}
