@@ -367,7 +367,7 @@ function App() {
         ref={pricing}
         className=" w-full h-fit py-12 px-7 box-border bg-slate-100 static md:sticky z-30"
       >
-        <h2 className="text-4xl italic mb-12 font-bold md:text-center heading">
+        <h2 className="text-4xl italic mb-12 mt-6 font-bold md:text-center heading">
           Ready for <span className="font-bold text-orange-600">Your</span>{" "}
           Transformation?
         </h2>
