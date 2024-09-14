@@ -28,24 +28,26 @@ function PaymentOptions({ isOpen, setIsOpen }: PaymentOptionsType) {
           </h2>
 
           <div className="flex flex-col justify-around items-center w-full h-fit gap-5">
-            <button className="w-full  bg-orange-700 text-center h-fit py-9 text-slate-50 rounded-md">
-              <a
-                href="https://app.hel.io/pay/66e4149522572c5be3e1af0a"
-                target="_blank"
-                rel="noreferrer"
-              >
+            <a
+              href="https://app.hel.io/pay/66e4149522572c5be3e1af0a"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full"
+            >
+              <button className="w-full  bg-orange-700 text-center h-fit py-9 text-slate-50 rounded-md">
                 Pay with Crypto (USDC)
-              </a>
-            </button>
-            <button className="w-full bg-orange-700 text-center h-fit py-9 text-slate-50 rounded-md">
-              <a
-                href="https://selar.co/1ar183"
-                target="_blank"
-                rel="noreferrer"
-              >
+              </button>
+            </a>
+            <a
+              href="https://selar.co/1ar183"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full"
+            >
+              <button className="w-full bg-orange-700 text-center h-fit py-9 text-slate-50 rounded-md">
                 Pay with Fiat
-              </a>
-            </button>
+              </button>
+            </a>
           </div>
         </div>
       </motion.div>

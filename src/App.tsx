@@ -250,22 +250,22 @@ function App() {
       </section>
       <section className="w-full h-fit py-12 px-6 bg-slate-700 box-border static md:sticky md:top-32 z-50 md:z-20">
         <div className="w-[90%] mx-auto">
-          <h2 className="text-4xl font-semibold text-center mb-12 heading text-stone-50">
+          <h2 className="text-4xl font-semibold text-center mb-12 mt-10 heading text-stone-50">
             Program Details
           </h2>
           <div className="flex flex-col lg:w-[80%] lg:mx-auto  gap-7 justify-between md:items-center">
             <div className="scale-110">
               <span className="group flex flex-row justify-start text-slate-50 text-xl md:text-2xl items-center w-full mb-6 body">
                 <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
-                <h3>Kickoff Date: September 21, 2024</h3>
+                <h3>Kickoff Date: September 25, 2024</h3>
               </span>
               <span className="group flex flex-row justify-start text-slate-50 text-xl md:text-2xl items-center w-full mb-6 body">
                 <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
-                <h3>Early Bird Payment Deadline: September 15, 2024</h3>
+                <h3>Early Bird Payment Deadline: September 18, 2024</h3>
               </span>
               <span className="group flex flex-row justify-start text-slate-50 text-xl md:text-2xl items-center w-full mb-6 body">
                 <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
-                <h3>Regular Registration Deadline: September 20, 2024</h3>
+                <h3>Regular Registration Deadline: September 24, 2024</h3>
               </span>
             </div>
             <div className="text-center md:w-[40%]">
@@ -343,7 +343,7 @@ function App() {
         </div>
       </section>
       <section className=" w-full h-fit py-12 px-7 box-border bg-gradient-to-b from-slate-500 to-slate-700 static md:sticky z-30">
-        <h2 className="text-4xl italic mb-12 text-slate-100 font-bold text-center heading">
+        <h2 className="text-4xl italic mb-12 mt-10 text-slate-100 font-bold text-center heading">
           Is This Program Right for{" "}
           <span className="text-orange-500">You </span> ?
         </h2>
