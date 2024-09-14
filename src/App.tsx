@@ -239,7 +239,7 @@ function App() {
           <p className=" text-wrap text-xl md:text-2xl text-center mb-20 w-[90%] md:w-[80%] mx-auto body">
             Unlock your full potential and 10X your results with our exclusive
             30-day mentorship program. Designed for ambitious individuals ready
-            to elevate their lives, careers, and make impact, this program
+            to elevate their lives, careers, and make impact. This program
             offers a transformative experience that will redefine your future.
           </p>
 
