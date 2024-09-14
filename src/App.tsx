@@ -303,10 +303,10 @@ function App() {
         ref={benefits}
         className=" w-full h-fit py-10 px-10 bg-slate-200 static md:sticky z-50 md:z-30"
       >
-        <h2 className="text-4xl font-semibold mt-10 mb-8 md:text-center heading">
+        <h2 className="text-4xl font-semibold mt-10 mb-8 text-center heading">
           Why This Mentorship is Different
         </h2>
-        <p className="lead text-2xl w-full md:w-[80%] mx-auto text-center mb-10 font-medium body">
+        <p className="lead text-xl md:text-2xl w-full md:w-[80%] mx-auto text-center mb-10 font-medium body">
           This isn’t just any program—it’s a personalized mentorship experience
           crafted specifically for those serious about achieving measurable,
           lasting success. Over the course of 30 days, you’ll gain the blueprint
@@ -343,19 +343,19 @@ function App() {
         </div>
       </section>
       <section className=" w-full h-fit py-12 px-7 box-border bg-gradient-to-b from-slate-500 to-slate-700 static md:sticky z-30">
-        <h2 className="text-4xl italic mb-12 text-slate-100 font-bold md:text-center heading">
+        <h2 className="text-4xl italic mb-12 text-slate-100 font-bold text-center heading">
           Is This Program Right for{" "}
           <span className="text-orange-500">You </span> ?
         </h2>
         <div className="w-full md:w-[70%] mx-auto">
-          <p className="body text-2xl text-slate-100 text-center lg:text-start">
+          <p className="body text-xl md:text-2xl text-slate-100 md:text-center lg:text-start">
             If you’re tired of feeling stuck in your career or business and
             ready to take decisive action toward your dreams, this program is
             for you.
           </p>
           <br />
           <br />
-          <p className="body text-2xl text-slate-100 text-center lg:text-start mb-10">
+          <p className="body text-xl md:text-2xl text-slate-100 md:text-center lg:text-start mb-10">
             Whether you're an entrepreneur, freelancer, or professional looking
             to boost your sales, build an online brand, or grow your influence,
             this mentorship will equip you with the mindset, skills, and tools
@@ -382,25 +382,25 @@ function App() {
             className=" bg-slate-50 max-w-[800px] py-12 px-6 border-4 border-blue-500 shadow-2xl box-border rounded-sm min-h-96 flex flex-col"
           >
             <h3 className="text-center font-bold text-3xl mb-7">Regular Fee</h3>
-            <span className="group flex justify-start items-center mb-6">
+            <span className="group flex justify-start items-center mb-6 ">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5 text-lg md:text-xl">
                 Regular Registration Deadline: September 20, 2024
               </span>
             </span>
-            <span className="relative group flex justify-start items-center mb-6">
+            <span className="relative group flex justify-start items-center mb-6 ">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5 text-lg md:text-xl">
                 30-Day Mentorship Program
               </span>
             </span>
-            <span className="relative group flex justify-start items-center mb-6">
+            <span className="relative group flex justify-start items-center mb-6 ">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5 text-lg md:text-xl">
                 Program Kickoff: September 21, 2024
               </span>
             </span>
-            <span className="relative group flex justify-start items-center mb-6">
+            <span className="relative group flex justify-start items-center mb-6 ">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5 text-lg md:text-xl">
                 <span className=" uppercase text-xl text-red-900 border-b-2 border-red-900">
