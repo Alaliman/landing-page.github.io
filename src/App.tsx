@@ -239,8 +239,8 @@ function App() {
           <p className=" text-wrap text-xl md:text-2xl text-center mb-20 w-[90%] md:w-[80%] mx-auto body">
             Unlock your full potential and 10X your results with our exclusive
             30-day mentorship program. Designed for ambitious individuals ready
-            to elevate their lives, careers, and impact, this program offers a
-            transformative experience that will redefine your future.
+            to elevate their lives, careers, and make impact, this program
+            offers a transformative experience that will redefine your future.
           </p>
 
           <h3 className="text-2xl text-center text-orange-500 mb-10 animate-pulse heading">
@@ -385,7 +385,7 @@ function App() {
             <span className="group flex justify-start items-center mb-6 ">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5 text-lg md:text-xl">
-                Regular Registration Deadline: September 20, 2024
+                Regular Registration Deadline: September 24, 2024
               </span>
             </span>
             <span className="relative group flex justify-start items-center mb-6 ">
@@ -397,7 +397,7 @@ function App() {
             <span className="relative group flex justify-start items-center mb-6 ">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5 text-lg md:text-xl">
-                Program Kickoff: September 21, 2024
+                Program Kickoff: September 25, 2024
               </span>
             </span>
             <span className="relative group flex justify-start items-center mb-6 ">
@@ -437,7 +437,7 @@ function App() {
             <span className=" group flex justify-start items-center mb-6">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5 text-lg md:text-xl">
-                Early Bird Payment Deadline: September 15, 2024
+                Early Bird Payment Deadline: September 18, 2024
               </span>
             </span>
             <span className=" group flex justify-start items-center mb-6">
@@ -449,7 +449,7 @@ function App() {
             <span className=" group flex justify-start items-center mb-6">
               <FaArrowRight className="text-transparent group-hover:text-black" />
               <span className="ml-5 text-lg md:text-xl">
-                Program Kickoff: September 21, 2024
+                Program Kickoff: September 25, 2024
               </span>
             </span>
             <span className=" group flex justify-start items-center mb-6">
