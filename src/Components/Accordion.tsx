@@ -44,7 +44,7 @@ const Accordion = () => {
         <div key={index} className="mb-4 border-b border-gray-200">
           <button
             onClick={() => toggleAccordion(index)}
-            className="w-full text-left flex items-center justify-between py-3 text-lg font-semibold text-gray-800"
+            className="w-full text-left text-xl md:text-2xl flex items-center justify-between py-3  font-semibold text-gray-800"
           >
             {faq.question}
             <FiChevronDown
@@ -62,7 +62,9 @@ const Accordion = () => {
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <p className="mt-2 text-gray-600 mb-3">{faq.answer}</p>
+              <p className="mt-2 text-gray-600 mb-3 text-lg md:text-xl">
+                {faq.answer}
+              </p>
             </motion.div>
           )}
         </div>

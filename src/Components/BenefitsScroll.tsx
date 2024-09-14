@@ -70,7 +70,7 @@ const HorizontalScrollList = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              <div className="flex items-start space-x-2 text-lg font-semibold group hover:text-orange-800">
+              <div className="flex items-start space-x-2 text-lg md:text-2xl font-semibold group hover:text-orange-800">
                 <FaArrowRight className="mr-2 group-hover:text-slate-800 transition-all" />
                 <div className="flex flex-col">
                   {/* Title styling */}
@@ -78,7 +78,9 @@ const HorizontalScrollList = () => {
                     {title.trim()}
                   </span>
                   {/* Explanation styling */}
-                  <span className="text-gray-600">{explanation.trim()}</span>
+                  <span className="text-gray-600 md:text-xl">
+                    {explanation.trim()}
+                  </span>
                 </div>
               </div>
             </motion.div>
