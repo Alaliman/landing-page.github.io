@@ -22,7 +22,7 @@ function PaymentOptions({ isOpen, setIsOpen }: PaymentOptionsType) {
           !isOpen && "hidden"
         }  w-full fixed z-50 h-screen inset-0 bg-black/85 flex justify-center items-center`}
       >
-        <div className="bg-white p-14 box-border rounded-md shadow-md w-[99%] md:w-[30%] h-[70%] md:h-fit z-[100]">
+        <div className="bg-white p-14 box-border rounded-md shadow-md w-[99%] md:w-[30%] h-fit z-[100]">
           <h2 className="text-2xl font-bold mb-4 text-center heading">
             Payment Options
           </h2>
