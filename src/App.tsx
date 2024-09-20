@@ -6,6 +6,7 @@ import { RiInstagramFill, RiTwitterXLine } from "react-icons/ri";
 import { FaTelegramPlane } from "react-icons/fa";
 import "./App.css";
 import { motion } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import Accordion from "./Components/Accordion";
 import HorizontalScrollList from "./Components/BenefitsScroll";
 import PaymentOptions from "./Components/PaymentOptions";
@@ -531,6 +532,7 @@ function App() {
         </div>
       </footer>
       <PaymentOptions isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Analytics />
     </div>
   );
 }
