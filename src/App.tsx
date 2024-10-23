@@ -28,7 +28,7 @@ function App() {
   const pricing = useRef<HTMLElement | null>(null);
   const faq = useRef<HTMLElement | null>(null);
   // Set the target date for countdown
-  const targetDate = new Date("September 25, 2024 00:00:00").getTime();
+  const targetDate = new Date("September 25, 2024 19:00:00").getTime();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const targetDateToDisable = new Date("2024-09-18T00:00:00"); //
