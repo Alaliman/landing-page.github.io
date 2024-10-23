@@ -1,21 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "./navLogo.png";
-import { CiMenuFries } from "react-icons/ci";
-import { FaArrowRight, FaWhatsapp } from "react-icons/fa6";
 import { RiInstagramFill, RiTwitterXLine } from "react-icons/ri";
-import { FaTelegramPlane } from "react-icons/fa";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import "./App.css";
+import { z } from "zod";
 import { motion } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
-import Accordion from "./Components/Accordion";
-import HorizontalScrollList from "./Components/BenefitsScroll";
-import PaymentOptions from "./Components/PaymentOptions";
+import { db } from "./config/firebase-config";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { toast } from "sonner";
+import maintain from "./imgs/maintaining.png";
+
+const Email = z.string().min(1).email({
+  message: "Enter a valid Email",
+});
 
 function App() {
   // State to track whether the user has scrolled
   const [hasScrolled, setHasScrolled] = useState(false);
   const [hasClicked, setHasClicked] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [email, setEmail] = useState<z.infer<typeof Email>>("");
 
   const home = useRef<HTMLElement | null>(null);
   const about = useRef<HTMLElement | null>(null);
@@ -28,6 +33,8 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const targetDateToDisable = new Date("2024-09-18T00:00:00"); //
   const [isDisabled, setIsDisabled] = useState(true);
+
+  const userCollection = collection(db, "user");
 
   useEffect(() => {
     // Check if the current date is after the target date
@@ -115,12 +122,64 @@ function App() {
     a.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const result = Email.safeParse(email);
+
+    if (result.success) {
+      try {
+        console.log(email);
+
+        // Check if email already exists in the Firestore collection
+        const q = query(userCollection, where("email", "==", email));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          toast.error("Email already exists in the list.", {
+            description: "Please use a different email.",
+            position: "top-right",
+            duration: 5000,
+          });
+          return; // Exit the function if email exists
+        }
+
+        // Add email if it doesn't exist
+        await addDoc(userCollection, { email: email });
+
+        // Success toast with custom green color
+        toast.success("Your email has been added to the list!", {
+          position: "top-right",
+          duration: 5000,
+          style: {
+            backgroundColor: "#28a745", // Green background color
+            color: "#fff", // White text color
+          },
+        });
+      } catch (err) {
+        console.error(err);
+
+        // Error toast
+        toast.error("There was an Error", {
+          description: "Please check your Network and try again",
+          position: "top-right",
+          duration: 5000,
+        });
+      }
+    } else {
+      toast.error("Invalid Email", {
+        position: "top-right",
+        duration: 5000,
+      });
+    }
+  };
+
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-fit">
       <nav
         className={`fixed z-40 w-full h-24 md:h-32 ${
           hasScrolled ? `bg-slate-50 shadow-md` : `bg-transparent`
-        }  flex justify-between items-center px-10 box-border`}
+        }  flex justify-between items-center`}
       >
         <div className="w-[50%] md:w-[20%]">
           <img
@@ -130,7 +189,7 @@ function App() {
             className="cursor-pointer"
           />
         </div>
-
+        {/* 
         <div
           className={` ${
             !hasScrolled && "text-[hsl(0,0%,29%)]"
@@ -198,301 +257,67 @@ function App() {
             Join now{" "}
             <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
           </button>
-        </div>
+        </div> */}
       </nav>
+
       <section
         ref={home}
-        className="w-full h-fit  box-border py-44 lg:py-0 lg:h-[600px]  hero"
+        className="w-full flex justify-center items-center h-[70vh]  box-border py-44 lg:py-0 "
       >
-        <div className="w-full inset-0 absolute h-[1000px] lg:h-[2000px] z-10 bg-[hsl(0,0%,8%)]/85"></div>
-        <div className="w-full h-full flex justify-center items-center z-30">
-          <div className="w-full md:w-fit px-12 md:py-24 md:px-10 md:w-50% md:text-center z-30 md:ml-0 md:border md:shadow-sm md:shadow-[hsl(0,0%,99%)] md:border-[hsl(0,0%,99%)]">
-            <h1 className="md:pb-2">
-              <span className=" text-6xl md:text-7xl font-extrabold text-orange-600">
-                Built to Last
-              </span>
-            </h1>
-            <p className="text-4xl md:pb-5 md:text-5xl text-[hsl(0,0%,99%)] leading-[120%]">
-              Transforming Your Purpose into <br />
-              Productivity, Progress, and Profit
+        {/* Image that is absolute that represents maintaining, it goes behind the footer */}
+        <div className="hidden md:block absolute opacity-5 z-10 top-0 right-3 w-[53%]">
+          <img
+            src={maintain}
+            alt="Maintain"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+        <div className="text-center w-full md:w-[45%]">
+          <h1 className="text-4xl md:text-5xl">
+            <span className="text-orange-500 font-bold w-full">
+              WE ARE ON <br /> MAINTAINANCE
+            </span>
+          </h1>
+          <div className="mt-12 w-full">
+            <p className="lead text-xl">
+              Be the first to know when we are back
             </p>
-
-            <div className=" md:hidden w-[30%] pt-10">
-              <button
-                onClick={() => setIsOpen(true)}
-                className="bg-orange-500 group w-full h-10 text-sm rounded-sm hover:bg-orange-400 hover:scale-105 transition-all"
-              >
-                Join now{" "}
-                <FaArrowRight className="hidden group-hover:inline-block transition-all duration-300" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section
-        ref={about}
-        className="w-full h-fit bg-gradient-to-b bg-slate-200 sticky py-10 box-border flex justify-center items-center z-30"
-      >
-        <div className="w-[80%] mx-auto">
-          <h2 className="text-4xl font-semibold text-center my-12 heading">
-            About this Mentorship
-          </h2>
-          <p className=" text-wrap text-xl md:text-2xl text-center mb-20 w-[90%] md:w-[80%] mx-auto body">
-            Unlock your full potential and 10X your results with our exclusive
-            30-day mentorship program. Designed for ambitious individuals ready
-            to elevate their lives, careers, and make impact. This program
-            offers a transformative experience that will redefine your future.
-          </p>
-
-          <h3 className="text-2xl text-center text-orange-500 mb-10 animate-pulse heading">
-            Transform Your Life in 30 Days!{" "}
-          </h3>
-        </div>
-      </section>
-      <section className="w-full h-fit py-12 px-6 bg-slate-700 box-border static md:sticky md:top-32 z-50 md:z-20">
-        <div className="w-[90%] mx-auto">
-          <h2 className="text-4xl font-semibold text-center mb-12 mt-10 heading text-stone-50">
-            Program Details
-          </h2>
-          <div className="flex flex-col lg:w-[80%] lg:mx-auto  gap-7 justify-between md:items-center">
-            <div className="scale-110">
-              <span className="group flex flex-row justify-start text-slate-50 text-xl md:text-2xl items-center w-full mb-6 body">
-                <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
-                <h3>Kickoff Date: September 25, 2024</h3>
-              </span>
-              <span className="group flex flex-row justify-start text-slate-50 text-xl md:text-2xl items-center w-full mb-6 body">
-                <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
-                <h3>Early Bird Payment Deadline: September 18, 2024</h3>
-              </span>
-              <span className="group flex flex-row justify-start text-slate-50 text-xl md:text-2xl items-center w-full mb-6 body">
-                <FaArrowRight className="inline-block mr-3 group-hover:mr-1 group-hover:w-5" />
-                <h3>Regular Registration Deadline: September 24, 2024</h3>
-              </span>
-            </div>
-            <div className="text-center md:w-[40%]">
-              {/* <h1 className="text-xl font-bold text-transparent">
-                Countdown Timer to 21st of September 2024
-              </h1> */}
-              <div className="mt-4 flex gap justify-around scale-110 ">
-                <div className="flex flex-col justify-center items-center w-fit text-orange-500 text-xl body">
-                  <span className="font-semibold text-lg">Days</span>
-                  <span>{timeRemaining.days}</span>
-                </div>
-                <div className="flex flex-col justify-center items-center w-fit text-slate-100 text-xl body">
-                  <span className="font-semibold text-lg">Hours</span>
-                  <span>{timeRemaining.hours}</span>
-                </div>
-                <div className="flex flex-col justify-center items-center w-fit text-orange-500 text-xl body">
-                  <span className="font-semibold text-lg">Minutes</span>
-                  <span>{timeRemaining.minutes}</span>
-                </div>
-                <div className="flex flex-col justify-center items-center w-fit text-slate-100 text-xl body">
-                  <span className="font-semibold text-lg">Seconds</span>
-                  <span>{timeRemaining.seconds}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 text-center">
-            <span className="text-white text-5xl font-bold animate-ping duration-100 font-sans">
-              Limited Spots Available!
-            </span>
-          </div>
-        </div>
-      </section>
-      <section
-        ref={benefits}
-        className=" w-full h-fit py-10 px-10 bg-slate-200 static md:sticky z-50 md:z-30"
-      >
-        <h2 className="text-4xl font-semibold mt-10 mb-8 text-center heading">
-          Why This Mentorship is Different
-        </h2>
-        <p className="lead text-xl md:text-2xl w-full md:w-[80%] mx-auto text-center mb-10 font-medium body">
-          This isn’t just any program—it’s a personalized mentorship experience
-          crafted specifically for those serious about achieving measurable,
-          lasting success. Over the course of 30 days, you’ll gain the blueprint
-          to:
-        </p>
-        <HorizontalScrollList />
-      </section>
-      <section className=" w-full h-fit  py-12 px-8 box-border bg-gradient-to-b from-slate-200 to-slate-500 static md:sticky md:top-32 z-20">
-        <h2 className="italic text-2xl mb-12 font-bold md:text-center heading">
-          Limited Spots Available -{" "}
-          <span className="text-2xl animate-ping font-extrabold text-red-800 duration-75">
-            Apply Now!
-          </span>
-        </h2>
-        <div className="text-center my-12 box-border md:w-[80%] lg:w-[60%] mx-auto">
-          <div className="mt-4 flex justify-around scale-110">
-            <div className="flex flex-col justify-center items-center w-fit text-orange-500 text-3xl body">
-              <span className="font-semibold text-lg">Days</span>
-              <span>{timeRemaining.days}</span>
-            </div>
-            <div className="flex flex-col justify-center items-center w-fit text-slate-700 text-3xl body">
-              <span className="font-semibold text-lg">Hours</span>
-              <span>{timeRemaining.hours}</span>
-            </div>
-            <div className="flex flex-col justify-center items-center w-fit text-orange-500 text-3xl body">
-              <span className="font-semibold text-lg">Minutes</span>
-              <span>{timeRemaining.minutes}</span>
-            </div>
-            <div className="flex flex-col justify-center items-center w-fit text-slate-700 text-3xl body">
-              <span className="font-semibold text-lg">Seconds</span>
-              <span>{timeRemaining.seconds}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className=" w-full h-fit py-12 px-7 box-border bg-gradient-to-b from-slate-500 to-slate-700 static md:sticky z-30">
-        <h2 className="text-4xl italic mb-12 mt-10 text-slate-100 font-bold text-center heading">
-          Is This Program Right for{" "}
-          <span className="text-orange-500">You </span> ?
-        </h2>
-        <div className="w-full md:w-[70%] mx-auto">
-          <p className="body text-xl md:text-2xl text-slate-100 md:text-center lg:text-start">
-            If you’re tired of feeling stuck in your career or business and
-            ready to take decisive action toward your dreams, this program is
-            for you.
-          </p>
-          <br />
-          <br />
-          <p className="body text-xl md:text-2xl text-slate-100 md:text-center lg:text-start mb-10">
-            Whether you're an entrepreneur, freelancer, or professional looking
-            to boost your sales, build an online brand, or grow your influence,
-            this mentorship will equip you with the mindset, skills, and tools
-            to 10X your results and redefine your future.
-          </p>
-        </div>
-      </section>
-      <section
-        ref={pricing}
-        className=" w-full h-fit py-12 px-7 box-border bg-slate-100 static md:sticky z-30"
-      >
-        <h2 className="text-4xl italic mb-12 mt-6 font-bold md:text-center heading">
-          Ready for <span className="font-bold text-orange-600">Your</span>{" "}
-          Transformation?
-        </h2>
-        <div className="flex flex-col md:flex-row justify-around w-[90%] mx-auto">
-          <motion.div
-            whileHover={{
-              scale: 1.02,
-            }}
-            whileTap={{
-              scale: 1,
-            }}
-            className=" bg-slate-50 max-w-[800px] py-12 px-6 border-4 border-blue-500 shadow-2xl box-border rounded-sm min-h-96 flex flex-col"
-          >
-            <h3 className="text-center font-bold text-3xl mb-7">Regular Fee</h3>
-            <span className="group flex justify-start items-center mb-6 ">
-              <FaArrowRight className="text-transparent group-hover:text-black" />
-              <span className="ml-5 text-lg md:text-xl">
-                Regular Registration Deadline: September 24, 2024
-              </span>
-            </span>
-            <span className="relative group flex justify-start items-center mb-6 ">
-              <FaArrowRight className="text-transparent group-hover:text-black" />
-              <span className="ml-5 text-lg md:text-xl">
-                30-Day Mentorship Program
-              </span>
-            </span>
-            <span className="relative group flex justify-start items-center mb-6 ">
-              <FaArrowRight className="text-transparent group-hover:text-black" />
-              <span className="ml-5 text-lg md:text-xl">
-                Program Kickoff: September 25, 2024
-              </span>
-            </span>
-            <span className="relative group flex justify-start items-center mb-6 ">
-              <FaArrowRight className="text-transparent group-hover:text-black" />
-              <span className="ml-5 text-lg md:text-xl">
-                <span className=" uppercase text-xl text-red-900 border-b-2 border-red-900">
-                  free
-                </span>{" "}
-                Blueprint worth $300
-              </span>
-            </span>
-            <span className="w-full text-center text-4xl my-6">$30</span>
-            <span className="w-full flex justify-center">
-              <button
-                onClick={() => setIsOpen(true)}
-                disabled={isDisabled}
-                className={`${
-                  isDisabled ? "bg-transparent" : "bg-orange-500"
-                }  w-fit py-3 px-4 mx-auto rounded-sm text-2xl`}
-              >
-                {isDisabled ? "you are still early" : "Register Now"}
-              </button>
-            </span>
-          </motion.div>
-          <motion.div
-            whileHover={{
-              scale: 1.02,
-            }}
-            whileTap={{
-              scale: 1,
-            }}
-            className="bg-slate-50 py-12 px-6 box-border border-orange-800 shadow-2xl border-4 rounded-sm min-h-96 flex flex-col"
-          >
-            <h3 className="text-center font-bold text-3xl mb-7">
-              Early Bird Special
-            </h3>
-            <span className=" group flex justify-start items-center mb-6">
-              <FaArrowRight className="text-transparent group-hover:text-black" />
-              <span className="ml-5 text-lg md:text-xl">
-                Early Bird Payment Deadline: September 18, 2024
-              </span>
-            </span>
-            <span className=" group flex justify-start items-center mb-6">
-              <FaArrowRight className=" text-transparent group-hover:text-black" />
-              <span className="ml-5 text-lg md:text-xl">
-                30-Day Mentorship Program
-              </span>
-            </span>
-            <span className=" group flex justify-start items-center mb-6">
-              <FaArrowRight className="text-transparent group-hover:text-black" />
-              <span className="ml-5 text-lg md:text-xl">
-                Program Kickoff: September 25, 2024
-              </span>
-            </span>
-            <span className=" group flex justify-start items-center mb-6">
-              <FaArrowRight className="text-transparent group-hover:text-black" />
-              <span className="ml-5 text-lg md:text-xl">
-                <span className=" uppercase text-xl text-red-900 border-b-2 border-red-900">
-                  free
-                </span>{" "}
-                Blueprint worth $300
-              </span>
-            </span>
-            <span className="w-full text-center text-4xl my-6">$25</span>
-            <span className="w-full flex justify-center">
+            <form className=" w-full mt-4" onSubmit={(e) => handleSubmit(e)}>
+              <input
+                type="email"
+                name="email"
+                className="w-[60%] md:w-[80%] mr-1 border focus:border-none focus: py-3 text-lg px-5 text-orange-700 hover:border-orange-700 "
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your.email@me.co"
+              />
               <motion.button
-                onClick={() => setIsOpen(true)}
-                disabled={!isDisabled}
-                whileHover={{
-                  scale: 1.05,
-                }}
-                whileTap={{
+                initial={{
                   scale: 1,
                 }}
-                className={`${
-                  !isDisabled ? "bg-transparent" : "bg-orange-500"
-                }  w-fit py-3 px-4 mx-auto rounded-sm text-2xl`}
+                whileHover={{
+                  scale: 1.01,
+                  transition: {
+                    duration: 0.2,
+                  },
+                }}
+                whileTap={{
+                  scale: [0.9, 1],
+                  transition: {
+                    duration: 0.2,
+                  },
+                }}
+                type="submit"
+                className=" bg-orange-600 hover:bg-orange-700 py-3 px-4 text-lg"
               >
-                {!isDisabled ? "Spot Full" : "Register Now"}
+                Submit
               </motion.button>
-            </span>
-          </motion.div>
+            </form>
+          </div>
         </div>
       </section>
-      <section
-        ref={faq}
-        className=" w-full h-full bg-slate-100 py-12 px-6 box-border static md:sticky z-30"
-      >
-        <h2 className="text-center mb-10 text-4xl font-semibold">FAQ'S</h2>
-        <div className="w-[70%] mx-auto">
-          <Accordion />
-        </div>
-      </section>
-      <footer className="w-full h-52 bg-black flex justify-center items-center static md:sticky z-30">
+      <footer className="w-full h-[30vh] bg-black flex justify-center items-center static md:sticky z-30">
         <div className="w-[80%] md:w-[40%] flex flex-col justify-center gap-8">
           <div className="flex w-full justify-around items-center">
             <a
@@ -531,7 +356,6 @@ function App() {
           </div>
         </div>
       </footer>
-      <PaymentOptions isOpen={isOpen} setIsOpen={setIsOpen} />
       <Analytics />
     </div>
   );
