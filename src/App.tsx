@@ -18,85 +18,85 @@ const Email = z.string().min(1).email({
 function App() {
   // State to track whether the user has scrolled
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [hasClicked, setHasClicked] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  // const [hasClicked, setHasClicked] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState<z.infer<typeof Email>>("");
 
   const home = useRef<HTMLElement | null>(null);
-  const about = useRef<HTMLElement | null>(null);
-  const benefits = useRef<HTMLElement | null>(null);
-  const pricing = useRef<HTMLElement | null>(null);
-  const faq = useRef<HTMLElement | null>(null);
+  // const about = useRef<HTMLElement | null>(null);
+  // const benefits = useRef<HTMLElement | null>(null);
+  // const pricing = useRef<HTMLElement | null>(null);
+  // const faq = useRef<HTMLElement | null>(null);
   // Set the target date for countdown
-  const targetDate = new Date("September 25, 2024 19:00:00").getTime();
+  // const targetDate = new Date("September 25, 2024 19:00:00").getTime();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const targetDateToDisable = new Date("2024-09-18T00:00:00"); //
-  const [isDisabled, setIsDisabled] = useState(true);
+  // const targetDateToDisable = new Date("2024-09-18T00:00:00"); //
+  // const [isDisabled, setIsDisabled] = useState(true);
 
   const userCollection = collection(db, "user");
 
-  useEffect(() => {
-    // Check if the current date is after the target date
-    const checkDate = () => {
-      const currentDate = new Date();
-      setIsDisabled(currentDate < targetDateToDisable); // Disable the button if current date is before the target date
-    };
+  // useEffect(() => {
+  //   // Check if the current date is after the target date
+  //   const checkDate = () => {
+  //     const currentDate = new Date();
+  //     setIsDisabled(currentDate < targetDateToDisable); // Disable the button if current date is before the target date
+  //   };
 
-    checkDate(); // Initial check
+  //   checkDate(); // Initial check
 
-    // Optional: Set an interval to periodically check the date
-    const interval = setInterval(checkDate, 1000); // Check every second
+  //   // Optional: Set an interval to periodically check the date
+  //   const interval = setInterval(checkDate, 1000); // Check every second
 
-    return () => clearInterval(interval); // Cleanup on unmount
-  }, [targetDateToDisable]);
+  //   return () => clearInterval(interval); // Cleanup on unmount
+  // }, [targetDateToDisable]);
 
-  // Initialize state to store the time remaining
-  const [timeRemaining, setTimeRemaining] = useState({
-    days: "00",
-    hours: "00",
-    minutes: "00",
-    seconds: "00",
-  });
+  // // Initialize state to store the time remaining
+  // const [timeRemaining, setTimeRemaining] = useState({
+  //   days: "00",
+  //   hours: "00",
+  //   minutes: "00",
+  //   seconds: "00",
+  // });
 
-  useEffect(() => {
-    // Function to update the countdown timer
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+  // useEffect(() => {
+  //   // Function to update the countdown timer
+  //   const updateCountdown = () => {
+  //     const now = new Date().getTime();
+  //     const distance = targetDate - now;
 
-      if (distance > 0) {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  //     if (distance > 0) {
+  //       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  //       const hours = Math.floor(
+  //         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  //       );
+  //       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  //       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Update the state with the new values, padded to two digits
-        setTimeRemaining({
-          days: String(days).padStart(2, "0"),
-          hours: String(hours).padStart(2, "0"),
-          minutes: String(minutes).padStart(2, "0"),
-          seconds: String(seconds).padStart(2, "0"),
-        });
-      } else {
-        // Countdown is over, set all values to '00'
-        setTimeRemaining({
-          days: "00",
-          hours: "00",
-          minutes: "00",
-          seconds: "00",
-        });
-      }
-    };
+  //       // Update the state with the new values, padded to two digits
+  //       setTimeRemaining({
+  //         days: String(days).padStart(2, "0"),
+  //         hours: String(hours).padStart(2, "0"),
+  //         minutes: String(minutes).padStart(2, "0"),
+  //         seconds: String(seconds).padStart(2, "0"),
+  //       });
+  //     } else {
+  //       // Countdown is over, set all values to '00'
+  //       setTimeRemaining({
+  //         days: "00",
+  //         hours: "00",
+  //         minutes: "00",
+  //         seconds: "00",
+  //       });
+  //     }
+  //   };
 
-    // Run the updateCountdown function every second
-    const intervalId = setInterval(updateCountdown, 1000);
+  //   // Run the updateCountdown function every second
+  //   const intervalId = setInterval(updateCountdown, 1000);
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
-  }, [targetDate]);
+  //   // Cleanup interval on component unmount
+  //   return () => clearInterval(intervalId);
+  // }, [targetDate]);
 
   useEffect(() => {
     // Function to handle the scroll event
@@ -114,9 +114,9 @@ function App() {
     };
   }, []);
 
-  const toggleMenu = () => {
-    setHasClicked(!hasClicked);
-  };
+  // const toggleMenu = () => {
+  //   setHasClicked(!hasClicked);
+  // };
 
   const scroll = (a: React.MutableRefObject<HTMLElement | null>) => {
     a.current?.scrollIntoView({ behavior: "smooth" });
@@ -268,11 +268,11 @@ function App() {
         <div className="hidden md:block absolute opacity-5 z-10 top-0 right-3 w-[53%]">
           <img
             src={maintain}
-            alt="Maintain"
+            alt="Man maintaining the website"
             className="w-full h-full object-cover object-center"
           />
         </div>
-        <div className="text-center w-full md:w-[45%]">
+        <div className="text-center w-full md:w-[45%] z-20">
           <h1 className="text-4xl md:text-5xl">
             <span className="text-orange-500 font-bold w-full">
               WE ARE ON <br /> MAINTAINANCE
@@ -282,7 +282,10 @@ function App() {
             <p className="lead text-xl">
               Be the first to know when we are back
             </p>
-            <form className=" w-full mt-4" onSubmit={(e) => handleSubmit(e)}>
+            <form
+              className=" w-full mt-4 z-20"
+              onSubmit={(e) => handleSubmit(e)}
+            >
               <input
                 type="email"
                 name="email"
@@ -309,7 +312,7 @@ function App() {
                   },
                 }}
                 type="submit"
-                className=" bg-orange-600 hover:bg-orange-700 py-3 px-4 text-lg"
+                className=" bg-orange-600 hover:bg-orange-700 py-3 px-4 text-lg cursor-pointer"
               >
                 Submit
               </motion.button>
